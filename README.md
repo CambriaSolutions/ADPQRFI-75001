@@ -13,6 +13,7 @@ OSI ADPQ RFI #75001
 ## References
 
 * [Starting Flask template](https://github.com/sloria/cookiecutter-flask)
+* [Flask Resource Megalist](https://www.fullstackpython.com/flask.html)
 
 ## Getting Started
 
