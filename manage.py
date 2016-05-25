@@ -48,7 +48,7 @@ class Lint(Command):
 
     def run(self, fix_imports):
         """Run command."""
-        skip = ['requirements']
+        skip = ['requirements', 'migrations']
         root_files = glob('*.py')
         root_directories = [name for name in next(os.walk('.'))[1] if not name.startswith('.')]
         files_and_directories = [arg for arg in root_files + root_directories if arg not in skip]
@@ -66,7 +66,7 @@ class Lint(Command):
         execute_tool('Checking code style', 'flake8')
 
 
-manager.add_command('server', Server(host="0.0.0.0", port=8080))
+manager.add_command('server', Server(host='0.0.0.0', port=8080))
 manager.add_command('shell', Shell(make_context=_make_context))
 manager.add_command('db', MigrateCommand)
 manager.add_command('urls', ShowUrls())
