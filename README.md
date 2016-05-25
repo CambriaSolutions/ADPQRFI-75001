@@ -1,5 +1,5 @@
 # ADPQRFI-75001
-OSI ADPQ RFI #75001
+OSI ADPQ RFI #75001 [![Build Status](https://travis-ci.com/CambriaSolutions/ADPQRFI-75001.svg?token=i1JMA1supXo23nJUmgBo&branch=master)](https://travis-ci.com/CambriaSolutions/ADPQRFI-75001)
 
 ## Technology Stack
 * [Flask](http://flask.pocoo.org/) - Python web framework
