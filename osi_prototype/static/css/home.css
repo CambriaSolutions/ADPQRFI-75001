@@ -1,0 +1,30 @@
+body {
+  background: url(/static/img/cover-med.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  text-transform: uppercase;
+  color: white;
+}
+
+.jumbotron {
+  background: none;
+}
+
+.navbar-default .navbar-brand {
+  color: white;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
+}
+
+footer {
+  color: white;
+}
+
+footer a {
+  color: white;
+}
