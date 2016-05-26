@@ -2,7 +2,7 @@
 {% extends "layout.html" %}
 {% block content %}
 <div class="container-narrow">
-  <h1>Register</h1>
+  <h1>Log In</h1>
     <br/>
     <form id="loginForm" class="form form-login" method="POST" action="" role="form">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
@@ -16,7 +16,7 @@
             </div>
             <p><input class="btn btn-default btn-submit" type="submit" value="Login"></p>
     </form>
-    <p><em>Already registered?</em> Click <a href="/">here</a> to login.</p>
+    <p><em>Not registered?</em> Click <a href="/">here</a> to Register.</p>
 </div>
 {% endblock %}
 
