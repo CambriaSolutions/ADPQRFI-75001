@@ -11,6 +11,7 @@ from flask_script.commands import Clean, ShowUrls
 
 from osi_prototype.app import create_app
 from osi_prototype.database import db
+from osi_prototype.seed import Seed
 from osi_prototype.settings import DevConfig, ProdConfig
 from osi_prototype.user.models import User
 
@@ -72,6 +73,8 @@ manager.add_command('db', MigrateCommand)
 manager.add_command('urls', ShowUrls())
 manager.add_command('clean', Clean())
 manager.add_command('lint', Lint())
+manager.add_command('seed', Seed())
+
 
 if __name__ == '__main__':
     manager.run()
