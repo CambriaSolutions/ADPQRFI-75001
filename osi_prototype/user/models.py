@@ -7,11 +7,6 @@ from flask_login import UserMixin
 from osi_prototype.database import Column, Model, SurrogatePK, db, reference_col, relationship
 from osi_prototype.extensions import bcrypt
 
-USER_TYPES = [
-    'admin',
-    'parent',
-    'agent'
-]
 
 class Role(SurrogatePK, Model):
     """A role for a user."""
@@ -43,7 +38,7 @@ class User(UserMixin, SurrogatePK, Model):
     last_name = Column(db.String(30), nullable=True)
     active = Column(db.Boolean(), default=False)
     is_admin = Column(db.Boolean(), default=False)
-    user_type = Column(db.String(16), default='parent') 
+    user_type = Column(db.String(16), default='parent')
 
     def __init__(self, username, email, password=None, **kwargs):
         """Create instance."""
@@ -60,9 +55,6 @@ class User(UserMixin, SurrogatePK, Model):
     def check_password(self, value):
         """Check password."""
         return bcrypt.check_password_hash(self.password, value)
-        
-    def user_type_str(self):
-        return USER_TYPES[self.user_type]
 
     @property
     def full_name(self):

@@ -4,7 +4,7 @@
 from flask_script import Command
 
 from osi_prototype.database import db
-from osi_prototype.user.models import User, Role
+from osi_prototype.user.models import User
 
 
 class Seed(Command):
@@ -21,9 +21,9 @@ class Seed(Command):
         ]
         for u in users:
             u.active = True
-        
+
         db.session.query(User).delete()
         db.session.commit()
-        
+
         db.session.add_all(users)
         db.session.commit()
