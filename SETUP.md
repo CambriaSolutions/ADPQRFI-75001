@@ -31,7 +31,8 @@ need to use ``nano ~/.bashrc`` or ``vi ~/.bashrc`` to edit it.
 
 You will need to open a new terminal to see the changes take effect.
 
-Then run the following commands to bootstrap your environment.
+Then run the following commands to bootstrap your environment with Python 3 and
+all development requirements.
 
     mkvirtualenv proto
     workon proto
