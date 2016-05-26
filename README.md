@@ -9,6 +9,8 @@ OSI ADPQ RFI #75001 [![Build Status](https://travis-ci.com/CambriaSolutions/ADPQ
 * [Leaflet](http://leafletjs.com/) - JS Maps library
 * [Heroku]() - Production host
 * [TravisCI]() - Continuous integration
+* [Git]() - Version control
+* [Github]() - Git hosting and task/issue tracking
 
 ## References
 
@@ -17,6 +19,4 @@ OSI ADPQ RFI #75001 [![Build Status](https://travis-ci.com/CambriaSolutions/ADPQ
 
 ## Getting Started
 
-* `mkvirtualenv proto`
-* `workon proto`
-* `pip install -r requirements/dev.txt`
+* [Setup Instructions](SETUP.md)
