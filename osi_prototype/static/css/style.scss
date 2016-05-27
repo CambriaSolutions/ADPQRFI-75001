@@ -2,6 +2,8 @@
    App specific CSS file.
    ========================================================================== */
 
+@import 'base';
+
 /* universal */
 
 html {
@@ -9,6 +11,8 @@ html {
 }
 
 body {
+  font: $font-stack;
+  color: $primary-color;
 }
 
 section {
@@ -19,12 +23,14 @@ textarea {
   resize: vertical;
 }
 
-.container-narrow{
+.container-narrow {
   margin: 0 auto;
   max-width: 700px;
 }
 
+
 /* Header and hero */
+
 .navbar-default {
   color: white;
   background: none;
@@ -35,13 +41,13 @@ textarea {
   font-size: 50px;
 }
 
+
 /* Forms */
 
 .navbar-form input[type="text"],
 .navbar-form input[type="password"] {
   width: 180px;
 }
-
 
 .form-register {
   width: 50%;
@@ -53,9 +59,10 @@ textarea {
   height: auto;
   padding: 10px;
   -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
+
 
 /* footer */
 
@@ -95,7 +102,7 @@ footer .footer-nav {
   list-style: none;
 }
 
-footer a, .navbar a {
+footer a,
+.navbar a {
   text-transform: uppercase;
 }
-

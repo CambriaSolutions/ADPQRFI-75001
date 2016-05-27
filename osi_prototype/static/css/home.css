@@ -1,6 +1,5 @@
 body {
-  background: url(/static/img/cover-med.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
+  background: url(/static/img/cover-med.jpg) no-repeat center center fixed;  -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
@@ -9,9 +8,20 @@ body {
   color: white;
 }
 
+div[role=main] {
+  height: 100vh;
+}
+
 .jumbotron {
   background: none;
-  height: 100%;
+  height: 100vh;
+}
+
+.jumbotron > .arrow {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .navbar-default .navbar-brand {

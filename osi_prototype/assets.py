@@ -4,15 +4,9 @@ from flask_assets import Bundle, Environment
 
 css = Bundle(
     'libs/bootstrap/dist/css/bootstrap.css',
-    'css/style.css',
-    filters='cssmin',
+    'css/style.scss',
+    filters='scss',
     output='public/css/common.css'
-)
-
-css_home = Bundle(
-    'css/home.css',
-    filters='cssmin',
-    output='public/css/home.css'
 )
 
 js = Bundle(
@@ -27,4 +21,3 @@ assets = Environment()
 
 assets.register('js_all', js)
 assets.register('css_all', css)
-assets.register('css_home', css_home)
