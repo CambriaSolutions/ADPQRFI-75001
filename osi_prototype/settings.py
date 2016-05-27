@@ -48,3 +48,6 @@ class TestConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'sqlite://'
     BCRYPT_LOG_ROUNDS = 4  # For faster tests; needs at least 4 to avoid "ValueError: Invalid rounds"
     WTF_CSRF_ENABLED = False  # Allows form testing
+    # This is due to:
+    #    https://github.com/jarus/flask-testing/issues/21
+    PRESERVE_CONTEXT_ON_EXCEPTION = False
