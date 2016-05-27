@@ -37,6 +37,8 @@ all development requirements.
     mkvirtualenv proto
     workon proto
     pip install -r requirements/dev.txt
+    sudo npm install -g bower
+    sudo gem install sass
     bower install
 
 Run the following to create your app's database tables and perform the initial migration:
