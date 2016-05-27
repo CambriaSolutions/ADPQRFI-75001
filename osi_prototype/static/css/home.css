@@ -4,7 +4,6 @@ body {
   -o-background-size: cover;
   background-size: cover;
 
-  text-transform: uppercase;
   color: white;
 }
 
@@ -17,11 +16,12 @@ div[role=main] {
   height: 100vh;
 }
 
-.jumbotron > .arrow {
-  position: absolute;
-  bottom: 5%;
-  left: 50%;
-  transform: translateX(-50%);
+.jumbotron > h1 {
+  text-transform: uppercase;
+}
+
+.jumbotron > p {
+  font-size: 22pt;
 }
 
 .navbar-default .navbar-brand {

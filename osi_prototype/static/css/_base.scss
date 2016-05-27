@@ -1,2 +1,125 @@
-$font-stack: Helvetica, sans-serif;
-$primary-color: white;
+@import 'variables';
+
+/* universal */
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  font-family: $font-stack;
+  color: $black-light;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.container-narrow {
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+
+/* Header and hero */
+.jumbotron h1 {
+  font-size: 34pt;
+}
+
+
+/* Forms */
+.navbar-form input[type="text"],
+.navbar-form input[type="password"] {
+  width: 180px;
+}
+
+.form-register {
+  width: 50%;
+}
+
+.form-register .form-control {
+  position: relative;
+  font-size: 16px;
+  height: auto;
+  padding: 10px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+/* footer */
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  color: #999999;
+}
+
+footer a {
+  color: #999999;
+}
+
+footer p {
+  float: right;
+  margin-right: 25px;
+}
+
+footer ul {
+  list-style: none;
+}
+
+footer ul li {
+  float: left;
+  margin-left: 10px;
+}
+
+footer .company {
+  float: left;
+  margin-left: 25px;
+  padding-left: 0;
+}
+
+footer .footer-nav {
+  float: right;
+  margin-right: 25px;
+  list-style: none;
+}
+
+footer a,
+.navbar a {
+  text-transform: uppercase;
+}
+
+h1 {
+    font-family: $font-stack-light;
+    font-size: 34pt;
+}
+
+h2 {
+    font-family: $font-stack-light;
+    font-size: 30pt;
+}
+
+h3 {
+    font-family: $font-stack-light;
+    font-size: 24pt;
+}
+
+h4 {
+    font-family: $font-stack-bold;
+    font-size: 22pt;
+}
+
+h5 {
+    font-family: $font-stack-bold;
+    font-size: 18pt;
+}
+
+p {
+    font-family: $font-stack-light;
+    font-size: 22pt;
+}
