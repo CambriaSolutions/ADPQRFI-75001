@@ -11,6 +11,7 @@ body {
 
 .jumbotron {
   background: none;
+  height: 100%;
 }
 
 .navbar-default .navbar-brand {
