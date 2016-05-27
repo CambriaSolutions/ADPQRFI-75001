@@ -6,6 +6,8 @@ python:
   - 3.3
   - 3.4
   - 3.5
+before_install:
+  - gem install sass
 install: pip install -r requirements/dev.txt
 before_script: python manage.py lint
 script: python manage.py test
