@@ -9,6 +9,9 @@
   <h1>Safety, permanency, and well-being</h1>
   <p>A support services center for foster parents.</p>
   <div class="container-narrow text-left">
+
+    <div class="row row-centered">
+      <div class="col col-lg-6 col-md-6 col-s-8 col-xs-12 col-centered">
       <form id="loginForm" class="form form-login" method="POST" action="/login/" role="form">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
         <div class="form-group">
@@ -34,6 +37,8 @@
           <a class="text-warning" href="{{ url_for('public.register') }}">I need to <em>create</em> an account</a>
         </p>
       </form>
+      </div>
+    </div><!-- /.row -->
 
   </div><!-- /.jumbotron -->
 </div>

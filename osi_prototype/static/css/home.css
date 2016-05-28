@@ -41,7 +41,6 @@ footer a {
 }
 
 #loginForm {
-  width: 400px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -50,4 +49,18 @@ footer a {
   height: 50px;
   line-height: 40px;
   width: 100%;
+}
+
+/* centered columns styles */
+.row-centered {
+    text-align:center;
+}
+
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
 }
