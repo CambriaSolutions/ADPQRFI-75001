@@ -16,6 +16,7 @@ class Seed(Command):
             User('admin', 'admin@example.com', 'passw0rd', user_type='admin'),
             User('parent1', 'parent1@example.com', 'passw0rd', user_type='parent'),
             User('parent2', 'parent2@example.com', 'passw0rd', user_type='parent'),
+            User('parent3', 'parent3@example.com', 'passw0rd', user_type='parent'),
             User('agent1', 'agent1@example.com', 'passw0rd', user_type='agent'),
             User('agent2', 'agent2@example.com', 'passw0rd', user_type='agent'),
         ]

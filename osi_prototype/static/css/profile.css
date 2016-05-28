@@ -10,7 +10,7 @@
   min-height: 38px;
 }
 
-.editable a {
+.editable a:not(.editable-empty) {
   color: #9B9B9B;
 }
 
