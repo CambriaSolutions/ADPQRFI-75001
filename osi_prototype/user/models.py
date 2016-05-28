@@ -39,6 +39,23 @@ class User(UserMixin, SurrogatePK, Model):
     active = Column(db.Boolean(), default=False)
     is_admin = Column(db.Boolean(), default=False)
     user_type = Column(db.String(16), default='parent')
+    blurb = Column(db.Text(), nullable=True)
+    address = Column(db.String(128), nullable=True)
+    license_number = Column(db.String(32), nullable=True)
+    phone_number = Column(db.String(32), nullable=True)
+
+    num_adults = Column(db.SmallInteger(), nullable=True, default=1)
+    num_children = Column(db.SmallInteger(), nullable=True, default=0)
+    num_capacity = Column(db.SmallInteger(), nullable=True, default=1)
+
+    pref_boys = Column(db.Boolean(), nullable=True, default=False)
+    pref_girls = Column(db.Boolean(), nullable=True, default=False)
+    pref_1_to_5 = Column(db.Boolean(), nullable=True, default=False)
+    pref_6_to_9 = Column(db.Boolean(), nullable=True, default=False)
+    pref_10_to_18 = Column(db.Boolean(), nullable=True, default=False)
+    pref_siblings = Column(db.Boolean(), nullable=True, default=False)
+    pref_behavioral = Column(db.Boolean(), nullable=True, default=False)
+    pref_respite = Column(db.Boolean(), nullable=True, default=False)
 
     def __init__(self, username, email, password=None, **kwargs):
         """Create instance."""

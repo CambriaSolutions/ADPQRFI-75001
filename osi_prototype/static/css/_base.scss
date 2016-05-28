@@ -9,6 +9,7 @@ html {
 body {
   font-family: $font-stack;
   color: $black-light;
+  background-color: $gray-light;
 }
 
 section {
@@ -19,13 +20,81 @@ textarea {
   resize: vertical;
 }
 
+h1 {
+  font-family: $font-stack;
+  font-weight: 300;
+  font-size: 34pt;
+}
+
+h2 {
+  font-family: $font-stack;
+  font-weight: 300;
+  font-size: 30pt;
+}
+
+h3 {
+  font-family: $font-stack;
+  font-weight: 300;
+  font-size: 24pt;
+}
+
+h4 {
+  font-family: $font-stack;
+  font-weight: 300;
+  font-size: 22pt;
+}
+
+h5 {
+  font-family: $font-stack;
+  font-weight: 300;
+  font-size: 18pt;
+}
+
+p {
+  font-family: $font-stack;
+  font-weight: 300;
+  font-size: 22pt;
+}
+
+.vertical-align {
+    display: flex;
+    align-items: center;
+}
+
+.vertical-align-col {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#product-title {
+  font-family: $font-stack;
+  font-weight: 700;
+  font-size: 12pt;
+  margin-bottom: 0;
+}
+
+#product-subtitle {
+  font-family: $font-stack;
+  font-weight: 300;
+  font-size: 8pt;
+  margin-bottom: 0;
+}
+
+.user-picture {
+}
+
+/* Containers */
 .container-narrow {
   margin: 0 auto;
   max-width: 700px;
 }
 
+.container .jumbotron {
+  border: 3px solid #ddd;
+  border-radius: 12px;
+}
 
-/* Header and hero */
 .jumbotron h1 {
   font-size: 34pt;
 }
@@ -34,15 +103,13 @@ textarea {
 /* Forms */
 .navbar-form input[type="text"],
 .navbar-form input[type="password"] {
-  width: 180px;
 }
 
 .form-control {
-  height: auto;
-  padding: 10px;
 }
 
 /* footer */
+
 footer {
   margin-top: 45px;
   padding-top: 5px;
@@ -79,37 +146,8 @@ footer .footer-nav {
   list-style: none;
 }
 
-footer a,
 .navbar a {
   text-transform: uppercase;
+  font-weight: 600;
 }
 
-h1 {
-    font-family: $font-stack-light;
-    font-size: 34pt;
-}
-
-h2 {
-    font-family: $font-stack-light;
-    font-size: 30pt;
-}
-
-h3 {
-    font-family: $font-stack-light;
-    font-size: 24pt;
-}
-
-h4 {
-    font-family: $font-stack-bold;
-    font-size: 22pt;
-}
-
-h5 {
-    font-family: $font-stack-bold;
-    font-size: 18pt;
-}
-
-p {
-    font-family: $font-stack-light;
-    font-size: 22pt;
-}

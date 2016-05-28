@@ -3,11 +3,25 @@
 $navbar-default-bg: transparent;
 $font-family-sans-serif: $font-stack;
 $gray-base: $black-dark;
+
 $brand-primary: $primary-light;
+$state-primary-text: $primary-light;
+
 $brand-success: $primary-light;
+$state-success-text: $primary-light;
+
 $brand-info: $primary-dark;
+$state-info-text: $primary-dark;
+
 $brand-warning: $warning-light;
+$state-warning-text: $warning-light;
+
 $brand-danger: $danger-light;
+$state-danger-text: $danger-light;
+
 $border-radius-small: 0px;
 $border-radius-base: 0px;
 $border-radius-large: 0px;
+
+$input-group-addon-bg: white;
+$input-group-addon-border: 0px;

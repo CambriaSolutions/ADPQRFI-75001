@@ -15,6 +15,7 @@ sass = get_filter('scss', as_output=True,
                   load_paths=(CSS_DIR, BOOTSTRAP_DIR))
 
 css = Bundle(
+    'css/bootstrap-editable.css',
     'css/style.scss',
     depends=('css/*.scss'),
     filters=(sass,),
@@ -24,6 +25,7 @@ css = Bundle(
 js = Bundle(
     'libs/jquery/dist/jquery.js',
     'libs/bootstrap-sass/assets/javascripts/bootstrap.js',
+    'js/bootstrap-editable.js',
     'js/plugins.js',
     filters='jsmin',
     output='public/js/common.js'

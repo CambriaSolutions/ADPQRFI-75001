@@ -5,6 +5,7 @@ import os
 from glob import glob
 from subprocess import call
 
+from flask import url_for
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Command, Manager, Option, Server, Shell
 from flask_script.commands import Clean, ShowUrls
@@ -35,6 +36,26 @@ def test():
     import pytest
     exit_code = pytest.main([TEST_PATH, '--verbose'])
     return exit_code
+
+
+@manager.command
+def list_routes():
+    """List the active URL routes."""
+    import urllib
+    output = []
+    for rule in app.url_map.iter_rules():
+
+        options = {}
+        for arg in rule.arguments:
+            options[arg] = '[{0}]'.format(arg)
+
+        methods = ','.join(rule.methods)
+        url = url_for(rule.endpoint, **options)
+        line = urllib.parse.unquote('{:50s} {:20s} {}'.format(rule.endpoint, methods, url))
+        output.append(line)
+
+    for line in sorted(output):
+        print(line)
 
 
 class Lint(Command):

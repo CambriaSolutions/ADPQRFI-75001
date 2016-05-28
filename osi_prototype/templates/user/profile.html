@@ -1,0 +1,174 @@
+{% extends "layout.html" %}
+{% block js %}
+<script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-- For safe form submission -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
+<div class="row">
+  <div class="col col-lg-12">
+    <div class="jumbotron">
+      <h4>
+        <i class="fa fa-user" aria-hidden="true"></i>
+        About you
+      </h4>
+      <div class="row">
+        <div class="col col-lg-4">
+          <div class="row vertical-align">
+            <div class="col col-lg-3">
+              <img class="img-circle user-photo" src="http://placehold.it/70x70">
+            </div>
+            <div class="col col-lg-9 vertical-align-col  user-brief">
+              <h3 class="text-primary">Hello, {{ current_user.first_name}}.</h3>
+              <div><p id="blurb" data-type="textarea" data-title="Enter blurb" data-rows="4">
+                {{ current_user.blurb or '' }}
+              </p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col col-lg-8">
+          <form id="user-profile-form">
+
+            <div class="row">
+              <div class="col col-lg-6">
+                <div class="form-group">
+                  <label for="first-name">First Name</label>
+                  <div class="editable"><p>
+                    <a href="#" id="first_name" data-type="text" data-title="Enter your first name">{{ current_user.first_name or '' }}
+                  </a></p></div>
+                </div>
+              </div>
+              <div class="col col-lg-6">
+                <div class="form-group">
+                  <label for="last-name">Last Name</label>
+                  <div class="editable"><p>
+                    <a href="#" id="last_name" data-type="text" data-title="Enter your last name">{{ current_user.last_name or '' }}
+                  </a></p></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col col-lg-6">
+                <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <div class="editable"><p>
+                    <a href="#" id="phone_number" data-type="text" data-title="Enter phone number">{{ current_user.phone_number or '' }}
+                  </a></p></div>
+                </div>
+              </div>
+              <div class="col col-lg-6">
+                <div class="form-group">
+                  <label for="license">License Number</label>
+                  <div class="editable"><p>
+                    <a href="#" id="license_number" data-type="text" data-title="Enter license number">{{ current_user.license_number or '' }}
+                  </a></p></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col col-lg-6">
+                <div class="form-group">
+                  <label for="address">Home Address</label>
+                    <div class="editable"><p>
+                      <a href="#" id="address" data-type="text" data-title="Enter home address">{{ current_user.address or '' }}
+                  </a></p></div>
+                </div>
+              </div>
+              <div class="col col-lg-6">
+                <div class="form-group">
+                  <label for="email">E-mail</label>
+                  <div class="editable"><p>
+                    <a href="#" id="email" data-type="text" data-title="Enter email">{{ current_user.email }}
+                  </a></p></div>
+                </div>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col col-lg-5">
+    <div class="jumbotron">
+      <h4>
+          <i class="fa fa-users" aria-hidden="true"></i>
+          About your family
+        </h4>
+      <p>
+        I have
+        <a href="#" id="num_adults" data-type="text" data-title="Enter adults">{{ current_user.num_adults or '' }}</a> adult(s) living in my home
+      </p>
+      <p>
+        I have
+        <a href="#" id="num_children" data-type="text" data-title="Enter children">{{ current_user.num_children or '' }}</a> child(ren) living in my home</p>
+      <p>
+        My home's total capacity is
+        <a href="#" id="num_capacity" data-type="text" data-title="Enter capacity">{{ current_user.num_capacity or '' }}</a> child(ren) for placement</p>
+    </div>
+  </div>
+
+  <div class="col col-lg-7">
+    <div class="jumbotron user-preferences">
+      <h4>
+          <i class="fa fa-home" aria-hidden="true"></i>
+          Your preferences
+        </h4>
+      <div class="row">
+        <div class="col col-lg-4">
+          <div class="form-group">
+            <label for="gender">Gender:</label>
+            <div>
+              <input type="checkbox" id="pref_girls" {{ 'checked' if current_user.pref_girls }}> Girls
+            </div>
+            <div>
+              <input type="checkbox" id="pref_boys" {{ 'checked' if current_user.pref_boys }}> Boys
+            </div>
+          </div>
+        </div>
+        <div class="col col-lg-4">
+          <div class="form-group">
+            <label for="ages">Ages:</label>
+            <div>
+              <input type="checkbox" id="pref_1_to_5" {{ 'checked' if current_user.pref_1_to_5 }}> Ages 1 - 5
+            </div>
+            <div>
+              <input type="checkbox" id="pref_6_to_9" {{ 'checked' if current_user.pref_6_to_9 }}> Ages 6 - 9
+            </div>
+            <div>
+              <input type="checkbox" id="pref_10_to_18" {{ 'checked' if current_user.pref_10_to_18 }}> Ages 10 - 18
+            </div>
+          </div>
+        </div>
+        <div class="col col-lg-4">
+          <div class="form-group">
+            <label for="ages">Other:</label>
+            <div>
+              <input type="checkbox" id="pref_siblings" {{ 'checked' if current_user.pref_siblings }}> Sibling Groups
+            </div>
+            <div>
+              <input type="checkbox" id="pref_behavioral" {{ 'checked' if current_user.pref_behavioral }}> Emotional / Behavioral
+            </div>
+            <div>
+              <input type="checkbox" id="pref_respite" {{ 'checked' if current_user.pref_respite }}> Respite Placements
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

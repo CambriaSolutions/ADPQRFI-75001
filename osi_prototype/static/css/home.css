@@ -3,7 +3,6 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-
   color: white;
 }
 
@@ -11,9 +10,10 @@ div[role=main] {
   height: 100vh;
 }
 
-.jumbotron {
+.container .jumbotron {
   background: none;
   height: 100vh;
+  border: none;
 }
 
 .jumbotron > h1 {
@@ -38,4 +38,16 @@ footer {
 
 footer a {
   color: white;
+}
+
+#loginForm {
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#loginForm input {
+  height: 50px;
+  line-height: 40px;
+  width: 100%;
 }

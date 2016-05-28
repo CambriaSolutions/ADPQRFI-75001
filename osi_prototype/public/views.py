@@ -21,7 +21,8 @@ def load_user(user_id):
 @blueprint.route('/', methods=['GET', 'POST'])
 def home():
     """Home page."""
-    return render_template('public/home.html')
+    form = LoginForm(request.form)
+    return render_template('public/home.html', form=form)
 
 
 @blueprint.route('/login/', methods=['GET', 'POST'])
@@ -33,7 +34,7 @@ def login():
         if form.validate_on_submit():
             login_user(form.user)
             flash('You are logged in.', 'success')
-            redirect_url = request.args.get('next') or url_for('user.members')
+            redirect_url = request.args.get('next') or url_for('user.profile')
             return redirect(redirect_url)
         else:
             flash_errors(form)
