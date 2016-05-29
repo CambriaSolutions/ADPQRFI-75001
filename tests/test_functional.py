@@ -35,8 +35,8 @@ class TestLoggingIn:
         # Submits
         res = form.submit().follow()
         res = testapp.get(url_for('public.logout')).follow()
-        # sees alert
-        assert 'You are logged out.' in res
+        # no option to log out on home page
+        assert 'Logout' not in res
 
     def test_sees_error_message_if_password_is_incorrect(self, user, testapp):
         """Show error if password is incorrect."""
