@@ -27,9 +27,11 @@
           <ul class="list-group">
             <li class="list-group-item">
               <form action="javascript:run_search">
-                <div class="form-group">
+                <div id="zip-group" class="form-group has-feedback">
                   <label for="location">Search in:</label>
                   <input type="text" class="form-control" id="facility-location" placeholder="Zip">
+                  <span class="glyphicon glyphicon-ok form-control-feedback success-status" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-warning-sign form-control-feedback failure-status" aria-hidden="true"></span>
                 </div>
                 <div class="form-group">
                   <label for="type">Agency type:</label>

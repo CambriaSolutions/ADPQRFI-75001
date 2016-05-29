@@ -130,15 +130,35 @@ function render_results(results) {
   map.fitBounds(bounds);
 }
 
+function is_valid_zip(zip) {
+  return zip.length == 5;
+}
+
+function validate_zip(group_id, validator) {
+  const value = $(group_id).find('input').val();
+  if (!validator(value)) {
+    $(group_id).removeClass('has-success');
+    $(group_id).addClass('has-warning');
+    $(group_id).find('.success-status').hide();
+    $(group_id).find('.failure-status').show();
+  } else {
+    $(group_id).removeClass('has-warning');
+    $(group_id).addClass('has-success');
+    $(group_id).find('.success-status').show();
+    $(group_id).find('.failure-status').hide();
+    return value;
+  }
+}
+
 function run_search() {
-  const facility_location = $('#facility-location').val();
-  if (facility_location.length == 0) return;
+  const facility_zip = validate_zip('#zip-group', is_valid_zip);
+  if (!facility_zip) return;
 
   const type_id = parseInt($('#facility-type option:selected').data('field'));
   const facility_type = FACILITY_TYPES[type_id];
 
-  console.log("Running search for: ", facility_location)
-  search_facilities_by_zip(facility_location, facility_type, render_results);
+  console.log("Running search for: ", facility_zip)
+  search_facilities_by_zip(facility_zip, facility_type, render_results);
 }
 
 $(document).ready(function() {

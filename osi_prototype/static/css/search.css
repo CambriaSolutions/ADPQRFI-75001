@@ -6,3 +6,7 @@ address {
     margin-bottom: 0;
     padding-bottom: 0;
 }
+
+.form-control-feedback {
+    display: none;
+}
