@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+{% block js %}
+<script>
+  const user_address = {{ current_user.address | tojson | safe }};
+</script>
+<script src="{{ url_for('static', filename='js/search.js') }}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDofPmsXtEJdXKNmCvV6hSzJIGS1AD1ldU&callback=init_map"></script>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col col-lg-12">
+    <div class="panel-group" role="tablist">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="search-options-heading">
+          <h4 class="panel-title">
+            <a class="" role="button" data-toggle="collapse" href="#search-options" aria-expanded="true" aria-controls="search-options">
+              Search Options <span class="text-right">(click to toggle)</i>
+            </a>
+          </h4>
+        </div>
+        <div id="search-options" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1" aria-expanded="true">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <form action="javascript:run_search">
+                <div class="form-group">
+                  <label for="location">Search in:</label>
+                  <input type="text" class="form-control" id="facility-location" placeholder="Zip">
+                </div>
+                <div class="form-group">
+                  <label for="type">Agency type:</label>
+                  <select class="form-control" id="facility-type">
+                    <option data-field="0">Adoption Agency</option>
+                    <option data-field="1">Foster Family Agency</option>
+                  </select>
+                </div>
+                <button id="run-search" type="submit" class="btn btn-default">
+                  <i class="fa fa-search" aria-hidden="true"></i> Search
+                </button>
+              </form>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <div id="results-list" class="list-group">
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div id="results-map"></div>
+  </div>
+</div>
+{% endblock %}

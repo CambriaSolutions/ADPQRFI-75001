@@ -43,7 +43,7 @@ def edit_profile():
 @login_required
 def search():
     """Show agency search page."""
-    return render_template('user/profile.html')
+    return render_template('user/search.html')
 
 
 @blueprint.route('/inbox/')
