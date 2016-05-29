@@ -1,7 +1,9 @@
 const CHHS_API_URL = 'https://chhs.data.ca.gov/resource/mffa-c6z5.json';
 const FACILITY_TYPES = [
+  "<all>",
   "ADOPTION AGENCY",
-  "FOSTER FAMILY AGENCY"
+  "FOSTER FAMILY AGENCY",
+  "FOSTER FAMILY AGENCY SUB"
 ];
 const DEFAULT_ICON = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
 const SELECTED_ICON = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
@@ -10,6 +12,7 @@ var map = null;
 var geocoder = null;
 var user_marker = null;
 var active_marker = null;
+var all_markers = [];
 
 function init_map() {
   const ca_latlng = {
@@ -56,10 +59,11 @@ function add_info_to_marker(marker, content) {
 }
 
 function search_facilities_by_zip(facility_zip, facility_type, cb) {
-  const params = {
+  var params = {
     facility_type,
     facility_zip,
   };
+  if (facility_type == "<all>") delete params.facility_type;
   const url = CHHS_API_URL + "?" + $.param(params);
 
   $.ajax(url, {
@@ -70,7 +74,12 @@ function search_facilities_by_zip(facility_zip, facility_type, cb) {
 }
 
 function render_results(results) {
+  // Clear previous results.
   $('#results-list').empty();
+  all_markers.forEach((marker) => {
+    marker.setMap(null);
+  });
+  all_markers = [];
 
   if (results.length == 0) {
     $('#results-list').html('<p>No results to show.</p>');
@@ -92,7 +101,8 @@ function render_results(results) {
       $('<address>').append(
         $('<em class="text-primary">').text(index + 1 + '. '),
         $('<strong>').text(facility.facility_name),
-        $('<td>').html(address)  // CAREFUL HERE, potentially unsafe.
+        $('<div>').html(address),  // CAREFUL HERE, potentially unsafe.
+        $('<div>').text(facility.facility_telephone_number)
     )).appendTo('#results-list');
 
     // Create a marker and set its position.
@@ -113,8 +123,8 @@ function render_results(results) {
       map.setCenter(marker.getPosition());
       active_marker = marker;
     })
-
     bounds.extend(marker.getPosition());
+    all_markers.push(marker);
   });
 
   map.fitBounds(bounds);
