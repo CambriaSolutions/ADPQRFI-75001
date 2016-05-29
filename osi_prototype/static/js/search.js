@@ -71,6 +71,12 @@ function search_facilities_by_zip(facility_zip, facility_type, cb) {
 
 function render_results(results) {
   $('#results-list').empty();
+
+  if (results.length == 0) {
+    $('#results-list').html('<p>No results to show.</p>');
+    return;
+  }
+
   var bounds = new google.maps.LatLngBounds();
   // Always add current user to bounds.
   if (user_marker) bounds.extend(user_marker.getPosition());

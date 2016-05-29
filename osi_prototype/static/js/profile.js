@@ -18,7 +18,6 @@ $(document).ready(function() {
     })
 
     const successFn = (response, newValue) => {
-        console.log(response);
         if (!response.success) return response.message;
     }
 
@@ -31,7 +30,6 @@ $(document).ready(function() {
     // Make fields editable.
     const editable = [
         '#blurb',
-        '#first_name',
         '#last_name',
         '#phone_number',
         '#license_number',
@@ -50,6 +48,20 @@ $(document).ready(function() {
             params: paramsFn
         });
     });
+
+    // Special handling for first name, so we can update the welcome message
+    // in tandem.
+    $('#first_name').editable({
+        url: EDIT_API,
+        send: 'always',
+        params: paramsFn,
+        success: (response, newValue) => {
+            if (response.success) {
+                $('#first-name-welcome').text(newValue);
+            }
+            return successFn(response, newValue)
+        },
+    })
 
     $('.user-preferences input[type=checkbox]').click((event) => {
         const checkbox = event.target;

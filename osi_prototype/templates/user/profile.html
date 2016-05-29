@@ -25,7 +25,7 @@
               <img class="img-circle user-photo" src="http://placehold.it/70x70">
             </div>
             <div class="col col-lg-9 vertical-align-col  user-brief">
-              <h3 class="text-primary">Hello, {{ current_user.first_name}}.</h3>
+              <h3 class="text-primary">Hello, <span id="first-name-welcome">{{ current_user.first_name}}</span>.</h3>
               <div><p id="blurb" data-type="textarea" data-title="Enter blurb" data-rows="4">
                 {{ current_user.blurb or '' }}
               </p></div>
