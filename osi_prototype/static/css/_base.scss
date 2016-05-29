@@ -146,6 +146,12 @@ footer .footer-nav {
   list-style: none;
 }
 
+.navbar {
+  background: url(/static/img/background.jpg) 50% 15%/cover no-repeat;
+  height: 25vw;
+  z-index: 1;
+}
+
 .navbar a {
   text-transform: uppercase;
   font-weight: 600;

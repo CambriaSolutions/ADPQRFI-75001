@@ -11,6 +11,12 @@ body {
   color: white;
 }
 
+.navbar {
+  background: none;
+  height: auto;
+  z-index: 1;
+}
+
 .readable {
   color: #28323B;
   text-decoration: underline;
@@ -69,4 +75,12 @@ footer a {
     text-align:left;
     /* inline-block space fix */
     margin-right:-4px;
+}
+
+.navbar-default .navbar-brand {
+  color: white;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
 }
