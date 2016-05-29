@@ -39,13 +39,6 @@ def edit_profile():
         return json.dumps({'success': False, 'message': message})
 
 
-@blueprint.route('/search/')
-@login_required
-def search():
-    """Show agency search page."""
-    return render_template('user/search.html')
-
-
 @blueprint.route('/inbox/')
 @login_required
 def inbox():

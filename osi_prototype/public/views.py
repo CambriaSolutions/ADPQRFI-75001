@@ -65,3 +65,9 @@ def register():
 def about():
     """About page."""
     return render_template('public/about.html')
+
+
+@blueprint.route('/search/')
+def search():
+    """Show agency search page."""
+    return render_template('public/search.html')
