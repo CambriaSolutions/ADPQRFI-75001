@@ -84,7 +84,7 @@ function render_results(results) {
     // Add facility to table.
     const record = $('<a class="list-group-item">').append(
       $('<address>').append(
-        $('<em>').text(index + 1 + '. '),
+        $('<em class="text-primary">').text(index + 1 + '. '),
         $('<strong>').text(facility.facility_name),
         $('<td>').html(address)  // CAREFUL HERE, potentially unsafe.
     )).appendTo('#results-list');
