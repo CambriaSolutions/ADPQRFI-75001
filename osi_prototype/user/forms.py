@@ -54,9 +54,11 @@ class EditForm(Form):
     last_name = StringField(
         'Last name', validators=[Optional(), Length(min=1, max=40)])
     phone_number = StringField(
-        'Phone number', validators=[Optional(), Length(10)])
+        'Phone number', validators=[Optional(), Length(min=10, max=10)],
+        message='Phone number must be 10 digits long')
     license_number = StringField(
-        'License number', validators=[Optional(), Length(6)])
+        'License number', validators=[Optional(), Length(min=6, max=6)],
+        message='License must be 6 digits long')
     num_adults = IntegerField(
         'Parents', validators=[Optional(), NumberRange(0, 4)])
     num_children = IntegerField(

@@ -1,9 +1,23 @@
 body {
-  background: url(/static/img/cover-med.jpg) no-repeat center center fixed;  -webkit-background-size: cover;
+  background:
+    linear-gradient(
+      rgba(120, 100, 140, 0.25),
+      rgba(140, 100, 140, 0.25)
+    ), url(/static/img/cover.jpg) no-repeat top center fixed;
+  -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   color: white;
+}
+
+.readable {
+  color: #28323B;
+  text-decoration: underline;
+}
+
+.readable-background {
+  background-color: rgba(255, 255, 255, .25);
 }
 
 div[role=main] {
@@ -22,14 +36,6 @@ div[role=main] {
 
 .jumbotron > p {
   font-size: 22pt;
-}
-
-.navbar-default .navbar-brand {
-  color: white;
-}
-
-.navbar-default .navbar-nav > li > a {
-  color: white;
 }
 
 footer {

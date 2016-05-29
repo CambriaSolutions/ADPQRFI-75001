@@ -1,5 +1,19 @@
+.navbar {
+  background-image: url(/static/img/background.jpg);
+  background-repeat: no-repeat;
+  background-position: 50% 25%;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 275px;
+  z-index: 1;
+}
+
 .container .jumbotron {
   padding: 20px 32px;
+  background-color: rgba(255, 255, 255, .95);
 }
 
 #user-profile-form .editable-inline {

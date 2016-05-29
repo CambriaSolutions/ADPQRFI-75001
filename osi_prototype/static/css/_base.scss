@@ -151,3 +151,15 @@ footer .footer-nav {
   font-weight: 600;
 }
 
+.navbar-collapse.collapse.in,
+.navbar-collapse.collapsing {
+  background-color: rgba(250, 250, 250, .78);
+}
+
+.navbar-header {
+  margin-bottom: 15px;
+}
+
+.navbar .navbar-collapse {
+    text-align: center;
+}
