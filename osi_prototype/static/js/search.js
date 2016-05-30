@@ -52,7 +52,7 @@ function init_map() {
 }
 
 function add_info_to_marker(marker, content) {
-  var infowindow = new google.maps.InfoWindow({content});
+  var infowindow = new google.maps.InfoWindow({content: content});
   marker.addListener('click', function() {
     infowindow.open(map, marker);
   });
@@ -60,8 +60,8 @@ function add_info_to_marker(marker, content) {
 
 function search_facilities_by_zip(facility_zip, facility_type, cb) {
   var params = {
-    facility_type,
-    facility_zip,
+    facility_type: facility_type,
+    facility_zip: facility_zip,
   };
   if (facility_type == "<all>") delete params.facility_type;
   const url = CHHS_API_URL + "?" + $.param(params);

@@ -66,6 +66,8 @@ $(document).ready(function() {
     $('.user-preferences input[type=checkbox]').click(function (event) {
        const checkbox = event.target;
         const checked = $(checkbox).is(":checked");
-        $.post(EDIT_API, {[checkbox.id]: checked});
+        var data = {};
+        data[checkbox.id] = checked;
+        $.post(EDIT_API, data);
     });
 });
