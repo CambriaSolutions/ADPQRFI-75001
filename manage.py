@@ -14,7 +14,7 @@ from osi_prototype.app import create_app
 from osi_prototype.database import db
 from osi_prototype.seed import Seed
 from osi_prototype.settings import DevConfig, ProdConfig
-from osi_prototype.user.models import User
+from osi_prototype.user.models import Message, User
 
 CONFIG = ProdConfig if os.environ.get('OSI_PROTOTYPE_ENV') == 'prod' else DevConfig
 HERE = os.path.abspath(os.path.dirname(__file__))
@@ -27,7 +27,7 @@ migrate = Migrate(app, db)
 
 def _make_context():
     """Return context dict for a shell session so you can access app, db, and the User model by default."""
-    return {'app': app, 'db': db, 'User': User}
+    return {'app': app, 'db': db, 'User': User, 'Message': Message}
 
 
 @manager.command

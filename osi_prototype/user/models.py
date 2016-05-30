@@ -81,3 +81,32 @@ class User(UserMixin, SurrogatePK, Model):
     def __repr__(self):
         """Represent instance as a unique string."""
         return '<User({username!r})>'.format(username=self.username)
+
+
+class Message(SurrogatePK, Model):
+    """A message from a user to another user of the app."""
+
+    __tablename__ = 'messages'
+    from_user_id = reference_col('users', nullable=False)
+    from_user = db.relationship(
+        'User',
+        backref=db.backref('outbox', lazy='dynamic', uselist=True),
+        foreign_keys='Message.from_user_id')
+
+    to_user_id = reference_col('users', nullable=False)
+    to_user = db.relationship(
+        'User',
+        backref=db.backref('inbox', lazy='dynamic', uselist=True),
+        foreign_keys='Message.to_user_id')
+
+    body = Column(db.Text(), nullable=False)
+
+    created_at = Column(db.DateTime, nullable=False, default=dt.datetime.utcnow)
+    is_read = Column(db.Boolean, nullable=False, default=False)
+
+    def __repr__(self):
+        """Represent instance as a unique string."""
+        return '<Message({from_user}=>{to_user}: {body})>'.format(
+            from_user=self.from_user_id,
+            to_user=self.to_user_id,
+            body=self.body[:24])

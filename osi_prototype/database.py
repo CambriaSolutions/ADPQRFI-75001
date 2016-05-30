@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """Database module, including the SQLAlchemy database object and DB-related utilities."""
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import backref, relationship
 
 from .compat import basestring
 from .extensions import db
