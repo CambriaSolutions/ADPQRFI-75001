@@ -7,7 +7,7 @@ $(document).ready(function() {
         dataType: 'json' //  json response
     }
 
-    const csrftoken = $('meta[name=csrf-token]').attr('content')
+    const csrftoken = $('meta[name=csrf-token]').attr('content');
 
     $.ajaxSetup({
         beforeSend: function(xhr, settings) {
@@ -17,11 +17,11 @@ $(document).ready(function() {
         }
     })
 
-    const successFn = (response, newValue) => {
+    const successFn = function (response, newValue) {
         if (!response.success) return response.message;
     }
 
-    const paramsFn = (params) => {
+    const paramsFn = function (params) {
         var new_params = {};
         new_params[params['name']] = params.value;
         return new_params;
@@ -40,7 +40,7 @@ $(document).ready(function() {
         '#num_capacity'
     ];
 
-    editable.forEach((id) => {
+    editable.forEach(function (id) {
         $(id).editable({
             url: EDIT_API,
             send: 'always',
@@ -55,7 +55,7 @@ $(document).ready(function() {
         url: EDIT_API,
         send: 'always',
         params: paramsFn,
-        success: (response, newValue) => {
+        success: function (response, newValue) {
             if (response.success) {
                 $('#first-name-welcome').text(newValue);
             }
@@ -63,8 +63,8 @@ $(document).ready(function() {
         },
     })
 
-    $('.user-preferences input[type=checkbox]').click((event) => {
-        const checkbox = event.target;
+    $('.user-preferences input[type=checkbox]').click(function (event) {
+       const checkbox = event.target;
         const checked = $(checkbox).is(":checked");
         $.post(EDIT_API, {[checkbox.id]: checked});
     });

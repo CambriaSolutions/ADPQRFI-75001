@@ -68,7 +68,7 @@ function search_facilities_by_zip(facility_zip, facility_type, cb) {
 
   $.ajax(url, {
     dataType: 'json'
-  }).done((results) => {
+  }).done(function (results) {
     cb(results);
   });
 }
@@ -76,7 +76,7 @@ function search_facilities_by_zip(facility_zip, facility_type, cb) {
 function render_results(results) {
   // Clear previous results.
   $('#results-list').empty();
-  all_markers.forEach((marker) => {
+  all_markers.forEach(function (marker) {
     marker.setMap(null);
   });
   all_markers = [];
@@ -90,7 +90,7 @@ function render_results(results) {
   // Always add current user to bounds.
   if (user_marker) bounds.extend(user_marker.getPosition());
 
-  results.forEach((facility, index) => {
+  results.forEach(function (facility, index) {
     const address = facility.facility_address + '<br/>' +
                     facility.facility_city + ',' +
                     facility.facility_state + ' ' +
@@ -118,7 +118,7 @@ function render_results(results) {
       label: (index + 1).toString()
     });
     add_info_to_marker(marker, facility.facility_name);
-    record.click(() => {
+    record.click(function () {
       // Zoom to location.
       map.setCenter(marker.getPosition());
       active_marker = marker;
