@@ -3,7 +3,7 @@ body {
     linear-gradient(
       rgba(120, 100, 140, 0.25),
       rgba(140, 100, 140, 0.25)
-    ), url(/static/img/cover.jpg) no-repeat top center fixed;
+    ), url(/static/img/cover.jpg) no-repeat top center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -32,8 +32,8 @@ div[role=main] {
 
 .container .jumbotron {
   background: none;
-  height: 100vh;
   border: none;
+  margin-top: 150px;
 }
 
 .jumbotron > h1 {
@@ -55,6 +55,7 @@ footer a {
 #loginForm {
   margin-left: auto;
   margin-right: auto;
+  margin-top: 50px;
 }
 
 #loginForm input {
