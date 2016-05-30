@@ -74,10 +74,13 @@ class TestRegistering:
         res = testapp.get(url_for('public.register'))
         # Fills out the form
         form = res.forms['registerForm']
+        form['firstname'] = 'first name'
+        form['lastname'] = 'last name'
         form['username'] = 'foobar'
         form['email'] = 'foo@bar.com'
         form['password'] = 'secret'
         form['confirm'] = 'secret'
+        form['usertype'] = 'parent'
         # Submits
         res = form.submit().follow()
         assert res.status_code == 200
@@ -90,10 +93,13 @@ class TestRegistering:
         res = testapp.get(url_for('public.register'))
         # Fills out form, but passwords don't match
         form = res.forms['registerForm']
+        form['firstname'] = 'first name'
+        form['lastname'] = 'last name'
         form['username'] = 'foobar'
         form['email'] = 'foo@bar.com'
         form['password'] = 'secret'
         form['confirm'] = 'secrets'
+        form['usertype'] = 'parent'
         # Submits
         res = form.submit()
         # sees error message
@@ -107,10 +113,13 @@ class TestRegistering:
         res = testapp.get(url_for('public.register'))
         # Fills out form, but username is already registered
         form = res.forms['registerForm']
+        form['firstname'] = 'first name'
+        form['lastname'] = 'last name'
         form['username'] = user.username
         form['email'] = 'foo@bar.com'
         form['password'] = 'secret'
         form['confirm'] = 'secret'
+        form['usertype'] = 'parent'
         # Submits
         res = form.submit()
         # sees error

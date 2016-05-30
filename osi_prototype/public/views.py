@@ -53,7 +53,11 @@ def register():
     """Register new user."""
     form = RegisterForm(request.form, csrf_enabled=False)
     if form.validate_on_submit():
-        User.create(username=form.username.data, email=form.email.data, password=form.password.data, active=True)
+        User.create(first_name=form.firstname.data, last_name=form.lastname.data,
+                    username=form.username.data, email=form.email.data, password=form.password.data,
+                    user_type=form.usertype.data, active=True,
+                    blurb='Case Worker' if (form.usertype.data == 'agent') else 'Parent')
+
         flash('Thank you for registering. You can now log in.', 'success')
         return redirect(url_for('public.home'))
     else:

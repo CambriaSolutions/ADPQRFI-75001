@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """User forms."""
 from flask_wtf import Form
-from wtforms import BooleanField, IntegerField, PasswordField, StringField
+from wtforms import BooleanField, IntegerField, PasswordField, SelectField, StringField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, NumberRange, Optional
 
 from .models import User
@@ -10,14 +10,19 @@ from .models import User
 class RegisterForm(Form):
     """Register form."""
 
+    firstname = StringField('First Name',
+                            validators=[DataRequired(), Length(min=1, max=30)])
+    lastname = StringField('Last Name',
+                           validators=[DataRequired(), Length(min=1, max=30)])
     username = StringField('Username',
                            validators=[DataRequired(), Length(min=3, max=25)])
     email = StringField('Email',
                         validators=[DataRequired(), Email(), Length(min=6, max=40)])
     password = PasswordField('Password',
                              validators=[DataRequired(), Length(min=6, max=40)])
-    confirm = PasswordField('Verify password',
+    confirm = PasswordField('Verify Password',
                             [DataRequired(), EqualTo('password', message='Passwords must match')])
+    usertype = SelectField('Case Worker?', choices=[('parent', 'No'), ('agent', 'Yes')])
 
     def __init__(self, *args, **kwargs):
         """Create instance."""

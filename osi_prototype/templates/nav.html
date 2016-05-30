@@ -24,7 +24,9 @@
       <li><a href="{{ url_for('public.about') }}">About</a></li>
       <li><a href="{{ url_for('public.search') }}">Search</a></li>
     {% if current_user and current_user.is_authenticated %}
-      <li><a href="{{ url_for('user.profile') }}">Profile</a></li>
+      {% if current_user.user_type == 'parent' %}
+        <li><a href="{{ url_for('user.profile') }}">Profile</a></li>
+      {% endif %}
       <li><a href="{{ url_for('user.inbox') }}">Inbox</a></li>
       <li><a class="navbar-link" href="{{ url_for('public.logout') }}">
         Logout <i class="fa fa-sign-out"></i></a></li>
