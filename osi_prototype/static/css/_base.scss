@@ -170,6 +170,15 @@ footer .footer-nav {
     text-align: center;
 }
 
+.navbar-brand > img {
+  float: left;
+  height: 40px;
+}
+
+.navbar-brand > div {
+  float: left;
+}
+
 .badge {
   background-color: $warning-light;
 }

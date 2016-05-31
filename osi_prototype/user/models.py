@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """User models."""
 import datetime as dt
-from collections import defaultdict
 
 from flask_login import UserMixin
 
@@ -79,10 +78,9 @@ class User(UserMixin, SurrogatePK, Model):
         """Full user name."""
         return '{0} {1}'.format(self.first_name, self.last_name)
 
-    def messages_between(self, other_username, limit=10):
+    def messages_between(self, other, limit=10):
         """Return partial query for messages between this user and another user."""
-        other_user = User.get_by_username(other_username)
-        return Message.messages_between(self, other_user)
+        return Message.messages_between(self, other)
 
     def threads_involved_in(self):
         """Return threads this user is involved in."""
@@ -122,15 +120,20 @@ class User(UserMixin, SurrogatePK, Model):
 
     def unread_msg_count(self):
         """Return the number of unread messages."""
-        # Select count(*) from messages where to_user_id = CurrentUser and is_read = 0
+        # Select count(*) from messages where to_user_id = CurrentUser and is_read = 0.
         return Message.query\
-                      .filter(Message.to_user_id==self.id, Message.is_read==0)\
+                      .filter(Message.to_user_id == self.id,
+                              Message.is_read == 0)\
                       .count()
 
     @classmethod
-    def get_by_username(cls, username):
+    def get_by_username(cls, username, show_404=False):
         """Look up a user by their username."""
-        return cls.query.filter_by(username=username).first()
+        query = cls.query.filter_by(username=username)
+        if show_404:
+            return query.first_or_404()
+        else:
+            return query.first()
 
     def __repr__(self):
         """Represent instance as a unique string."""

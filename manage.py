@@ -70,7 +70,7 @@ class Lint(Command):
 
     def run(self, fix_imports):
         """Run command."""
-        skip = ['requirements', 'migrations']
+        skip = ['requirements', 'migrations', 'artifacts']
         root_files = glob('*.py')
         root_directories = [name for name in next(os.walk('.'))[1] if not name.startswith('.')]
         files_and_directories = [arg for arg in root_files + root_directories if arg not in skip]

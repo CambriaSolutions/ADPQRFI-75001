@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """User forms."""
 from flask_wtf import Form
-from wtforms import BooleanField, IntegerField, PasswordField, SelectField, StringField
+from wtforms import BooleanField, IntegerField, PasswordField, SelectField, StringField, TextAreaField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, NumberRange, Optional
 
 from .models import User
@@ -104,5 +104,24 @@ class EditForm(Form):
                 return False
         else:
             del self.email
+
+        return True
+
+
+class MessageForm(Form):
+    """New message form."""
+
+    from_username = StringField('From',
+                                validators=[Optional(), Length(min=3, max=30)])
+    to_username = StringField('To',
+                              validators=[DataRequired(), Length(min=3, max=30)])
+    body = TextAreaField('New Message',
+                         validators=[DataRequired(), Length(min=3, max=1500)])
+
+    def validate(self):
+        """Validate the form."""
+        initial_validation = super(MessageForm, self).validate()
+        if not initial_validation:
+            return False
 
         return True
