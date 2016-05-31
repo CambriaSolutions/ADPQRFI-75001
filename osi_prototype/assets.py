@@ -11,7 +11,7 @@ BOOTSTRAP_DIR = os.path.join(
     BASE_DIR, 'static/libs/bootstrap-sass/assets/stylesheets')
 
 
-sass = get_filter('scss', as_output=True,
+sass = get_filter('pyscss',
                   load_paths=(CSS_DIR, BOOTSTRAP_DIR))
 
 css = Bundle(
