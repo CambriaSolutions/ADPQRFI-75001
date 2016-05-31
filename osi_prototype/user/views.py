@@ -46,7 +46,11 @@ def edit_profile():
 def messages():
     """Show private messaging page."""
     threads = current_user.threads_involved_in()
-    return render_template('user/threads.html', threads=threads)
+    if current_user.user_type == 'parent':
+        users = User.query.filter_by(user_type='agent')
+    else:
+        users = User.query.filter_by(user_type='parent')
+    return render_template('user/threads.html', threads=threads, users=users)
 
 
 @blueprint.route('/messages/<to_username>', methods=['GET', 'POST'])

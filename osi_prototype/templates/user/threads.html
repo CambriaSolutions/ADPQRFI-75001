@@ -9,6 +9,30 @@
 
 {% block content %}
 <div class="container">
+  <div class="panel-collapse collapse in" role="tabpanel">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <form class="form-inline">
+          <div class="form-group">
+            <label>Start a new conversation:</label>
+            <div class="dropdown">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+                {{ 'Case workers' if current_user.user_type == 'parent' else 'Parents' }}
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                {% for user in users %}
+                <li><a href="{{ url_for('user.message_thread', to_username=user.username) }}">
+                  {{ user.username }}
+                </a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </form>
+      </li>
+    </ul>
+  </div>
   <div class="list-group">
     {% for thread in threads %}
     <a href="{{ url_for('user.message_thread', to_username=thread['other_username']) }}"

@@ -59,7 +59,7 @@ def register():
                     blurb='Case Worker' if (form.usertype.data == 'agent') else 'Parent')
 
         flash('Thank you for registering. You can now log in.', 'success')
-        return redirect(url_for('public.home'))
+        return redirect(url_for('user.profile'))
     else:
         flash_errors(form)
     return render_template('public/register.html', form=form)
