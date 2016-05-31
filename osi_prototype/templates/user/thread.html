@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block js %}
+<script src="{{ url_for('static', filename='js/messages.js') }}"></script>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/messages.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+  {% for message in messages %}
+  <div class="media">
+    {% if current_user.id == message.from_user_id %}
+      <div class="media-left">
+        <img class="img-circle media-object" src="http://placehold.it/70x70">
+      </div>
+      <div class="media-body">
+        <p class="media-heading">{{ message.body }}</p>
+        <em>{{ message.created_at }}</em>
+      </div>
+    {% else %}
+      <div class="media-body">
+        <p class="media-heading">{{ message.body }}</p>
+        <em>{{ message.created_at }}</em>
+      </div>
+      <div class="media-right">
+        <img class="img-circle media-object" src="http://placehold.it/70x70">
+      </div>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

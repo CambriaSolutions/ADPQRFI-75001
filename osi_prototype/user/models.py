@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """User models."""
 import datetime as dt
+from collections import defaultdict
 
 from flask_login import UserMixin
 
@@ -78,6 +79,31 @@ class User(UserMixin, SurrogatePK, Model):
         """Full user name."""
         return '{0} {1}'.format(self.first_name, self.last_name)
 
+    def messages_between(self, other_username, limit=10):
+        """Returns messages between this user and another user."""
+        other_user = User.get_by_username(other_username)
+        return Message.messages_between(self, other_user).limit(limit).all()
+
+    def threads_involved_in(self):
+        """Returns threads this user is involved in."""
+        threads = defaultdict(dict)
+        # De-duplicate threads for (2, 5) and (5, 2) into one.
+        for (from_id, to_id, time) in Message.threads_involving(self).all():
+            if from_id == self.id:
+                # From me to someone else.
+                to_username = User.get_by_id(to_id).username
+                threads[to_username]['last_sent'] = time
+            else:
+                # From someone else to me.
+                from_username = User.get_by_id(from_id).username
+                threads[from_username]['last_received'] = time
+        return threads
+
+    @classmethod
+    def get_by_username(cls, username):
+        """Looks up a user by their username."""
+        return cls.query.filter_by(username=username).first()
+
     def __repr__(self):
         """Represent instance as a unique string."""
         return '<User({username!r})>'.format(username=self.username)
@@ -103,6 +129,28 @@ class Message(SurrogatePK, Model):
 
     created_at = Column(db.DateTime, nullable=False, default=dt.datetime.utcnow)
     is_read = Column(db.Boolean, nullable=False, default=False)
+
+    @classmethod
+    def messages_between(cls, user_a, user_b):
+        """Returns a partial query for all messages between two users."""
+        messages = cls.query.filter(
+            db.or_(db.and_(cls.from_user_id == user_a.id,
+                           cls.to_user_id == user_b.id),
+                   db.and_(cls.from_user_id == user_b.id,
+                           cls.to_user_id == user_a.id)))\
+           .order_by(cls.created_at.desc())
+        return messages
+
+    @classmethod
+    def threads_involving(cls, user):
+        """Returns a partial query for all threads this user involved in."""
+        threads = cls.query.with_entities(cls.from_user_id,
+                                          cls.to_user_id,
+                                          db.func.max(cls.created_at))\
+                     .filter(db.or_(cls.from_user_id == user.id,
+                                    cls.to_user_id   == user.id))\
+                     .group_by(cls.from_user_id, cls.to_user_id)
+        return threads
 
     def __repr__(self):
         """Represent instance as a unique string."""

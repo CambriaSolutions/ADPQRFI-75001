@@ -39,8 +39,17 @@ def edit_profile():
         return json.dumps({'success': False, 'message': message})
 
 
-@blueprint.route('/inbox/')
+@blueprint.route('/messages/')
 @login_required
-def inbox():
-    """Show private inbox page."""
-    return render_template('user/profile.html')
+def messages():
+    """Show private messaging page."""
+    threads = current_user.threads_involved_in()
+    return render_template('user/messages.html', threads=threads)
+
+
+@blueprint.route('/messages/<to_username>')
+@login_required
+def message_thread(to_username):
+    """Show message thread page."""
+    messages = current_user.messages_between(to_username)
+    return render_template('user/thread.html', messages=messages)
