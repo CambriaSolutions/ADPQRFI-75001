@@ -91,10 +91,11 @@ class User(UserMixin, SurrogatePK, Model):
         users_seen.add(self.id)
 
         # De-duplicate threads for (2, 5) and (5, 2) into one.
-        for (from_id, to_id, time) in Message.threads_involving(self).all():
-            # At least one of the users in this thread should be new.
+        for (from_id, to_id, is_read, time) in Message.threads_involving(self).all():
+            # At least one of the users in this thread should be unseen.
             if (from_id not in users_seen) or (to_id not in users_seen):
                 thread = {}
+
                 if from_id == self.id:
                     # From me to someone else.
                     other_username = User.get_by_id(to_id).username
@@ -104,8 +105,14 @@ class User(UserMixin, SurrogatePK, Model):
                     other_username = User.get_by_id(from_id).username
                     users_seen.add(from_id)
 
+                # I have unread messages in this thread if I received a message
+                # that is unread. If I was the most recent person to send a
+                # message, I should not have any unread messages.
+                has_unread = (self.id == to_id) and not is_read
+
                 thread['other_username'] = other_username
                 thread['last_updated'] = time
+                thread['has_unread'] = has_unread
                 thread_list.append(thread)
 
         return thread_list
@@ -157,6 +164,7 @@ class Message(SurrogatePK, Model):
         """Return a partial query for all threads this user involved in."""
         threads = cls.query.with_entities(cls.from_user_id,
                                           cls.to_user_id,
+                                          cls.is_read,
                                           db.func.max(cls.created_at))\
                      .filter(db.or_(cls.from_user_id == user.id,
                                     cls.to_user_id == user.id))\

@@ -11,10 +11,14 @@
 <div class="container">
   <div class="list-group">
     {% for thread in threads %}
-    <a href="{{ url_for('user.message_thread', to_username=thread['other_username']) }}" class="list-group-item">
+    <a href="{{ url_for('user.message_thread', to_username=thread['other_username']) }}"
+       class="list-group-item {{ 'list-group-item-success' if thread['has_unread'] }}">
       <div class="row">
         <div class="col col-lg-7">
-          <p>Chat with <strong class="text-primary">{{ thread['other_username'] }}</strong></p>
+          <p>
+            {% if thread['has_unread'] %} <i class="fa fa-envelope" aria-hidden="true"></i> {% endif %}
+            Chat with <strong class="text-primary">{{ thread['other_username'] }}</strong>
+          </p>
         </div>
         <div class="col col-lg-5">
           <p class="text-right"><em>{{ thread['last_updated'].strftime('%Y-%m-%d %H:%M') }}</em></p>
