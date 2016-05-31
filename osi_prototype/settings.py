@@ -21,7 +21,7 @@ class ProdConfig(Config):
     """Production configuration."""
 
     ENV = 'prod'
-    DEBUG = True
+    DEBUG = False
     SQLALCHEMY_DATABASE_URI = os.environ["DATABASE_URL"]
     DEBUG_TB_ENABLED = False  # Disable Debug toolbar
 
