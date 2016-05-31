@@ -5,7 +5,9 @@ import json
 from flask import Blueprint, render_template, request
 from flask_login import current_user, login_required
 
+from osi_prototype.database import db
 from osi_prototype.user.forms import EditForm
+from osi_prototype.user.models import Message
 
 blueprint = Blueprint('user', __name__, static_folder='../static')
 
@@ -47,9 +49,17 @@ def messages():
     return render_template('user/messages.html', threads=threads)
 
 
-@blueprint.route('/messages/<to_username>')
+@blueprint.route('/messages/<other_username>')
 @login_required
-def message_thread(to_username):
+def message_thread(other_username):
     """Show message thread page."""
-    messages = current_user.messages_between(to_username)
-    return render_template('user/thread.html', messages=messages)
+    messages = current_user.messages_between(other_username)
+
+    ordered_messages = messages.order_by(Message.created_at.desc()).all()
+    rendered = render_template('user/thread.html', messages=ordered_messages)
+
+    # Update as read.
+    messages.update({'is_read': True})
+    db.session.commit()
+
+    return rendered

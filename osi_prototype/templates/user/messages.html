@@ -11,13 +11,19 @@
 <div class="container">
   <div class="list-group">
     {% for thread in threads %}
-    <a href="{{ url_for('user.message_thread', to_username=thread['other_username']) }}"
-       class="list-group-item {{ 'list-group-item-success' if thread['has_unread'] }}">
+    <a href="{{ url_for('user.message_thread', other_username=thread['other_username']) }}"
+       class="list-group-item">
       <div class="row">
         <div class="col col-lg-7">
           <p>
-            {% if thread['has_unread'] %} <i class="fa fa-envelope" aria-hidden="true"></i> {% endif %}
-            Chat with <strong class="text-primary">{{ thread['other_username'] }}</strong>
+            {% if thread['has_unread'] %}
+              <span class="label label-warning">New</span>
+              <strong class="text-primary">
+                Chat with {{ thread['other_username'] }}
+              </strong>
+            {% else %}
+              Chat with {{ thread['other_username'] }}
+            {% endif %}
           </p>
         </div>
         <div class="col col-lg-5">

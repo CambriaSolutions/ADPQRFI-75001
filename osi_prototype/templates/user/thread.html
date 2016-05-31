@@ -20,8 +20,14 @@
         <em>{{ message.created_at }}</em>
       </div>
     {% else %}
-      <div class="media-body">
-        <p class="media-heading">{{ message.body }}</p>
+      <div class="media-body text-right {{ 'text-warning' if not message.is_read else 'text-default' }}">
+        <p class="media-heading">
+          {% if not message.is_read %}
+            <strong> {{ message.body }} </strong>
+          {% else %}
+            {{ message.body }}
+          {% endif %}
+        </p>
         <em>{{ message.created_at }}</em>
       </div>
       <div class="media-right">
