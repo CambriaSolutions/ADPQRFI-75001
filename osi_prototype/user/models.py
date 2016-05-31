@@ -123,7 +123,7 @@ class User(UserMixin, SurrogatePK, Model):
         # Select count(*) from messages where to_user_id = CurrentUser and is_read = 0.
         return Message.query\
                       .filter(Message.to_user_id == self.id,
-                              Message.is_read == 0)\
+                              Message.is_read == False)\
                       .count()
 
     @classmethod
