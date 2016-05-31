@@ -149,7 +149,8 @@ class Message(SurrogatePK, Model):
                                           db.func.max(cls.created_at))\
                      .filter(db.or_(cls.from_user_id == user.id,
                                     cls.to_user_id   == user.id))\
-                     .group_by(cls.from_user_id, cls.to_user_id)
+                     .group_by(cls.from_user_id, cls.to_user_id)\
+                     .order_by(cls.created_at)
         return threads
 
     def __repr__(self):
