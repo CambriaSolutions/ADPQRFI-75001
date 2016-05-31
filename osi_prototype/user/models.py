@@ -78,6 +78,116 @@ class User(UserMixin, SurrogatePK, Model):
         """Full user name."""
         return '{0} {1}'.format(self.first_name, self.last_name)
 
+    def messages_between(self, other, limit=10):
+        """Return partial query for messages between this user and another user."""
+        return Message.messages_between(self, other)
+
+    def threads_involved_in(self):
+        """Return threads this user is involved in."""
+        thread_list = []
+        users_seen = set()
+        users_seen.add(self.id)
+
+        # De-duplicate threads for (2, 5) and (5, 2) into one.
+        ordered_threads = Message.threads_involving(self).order_by(
+            Message.created_at.desc()).all()
+
+        for (from_id, to_id, is_read, time) in ordered_threads:
+            # At least one of the users in this thread should be unseen.
+            if (from_id not in users_seen) or (to_id not in users_seen):
+                thread = {}
+
+                if from_id == self.id:
+                    # From me to someone else.
+                    other_username = User.get_by_id(to_id).username
+                    users_seen.add(to_id)
+                else:
+                    # From someone else to me.
+                    other_username = User.get_by_id(from_id).username
+                    users_seen.add(from_id)
+
+                # I have unread messages in this thread if I received a message
+                # that is unread. If I was the most recent person to send a
+                # message, I should not have any unread messages.
+                has_unread = (self.id == to_id) and not is_read
+
+                thread['other_username'] = other_username
+                thread['last_updated'] = time
+                thread['has_unread'] = has_unread
+                thread_list.append(thread)
+
+        return thread_list
+
+    def unread_msg_count(self):
+        """Return the number of unread messages."""
+        # Select count(*) from messages where to_user_id = CurrentUser and is_read = 0.
+        return Message.query\
+                      .filter(Message.to_user_id == self.id,
+                              Message.is_read == 0)\
+                      .count()
+
+    @classmethod
+    def get_by_username(cls, username, show_404=False):
+        """Look up a user by their username."""
+        query = cls.query.filter_by(username=username)
+        if show_404:
+            return query.first_or_404()
+        else:
+            return query.first()
+
     def __repr__(self):
         """Represent instance as a unique string."""
         return '<User({username!r})>'.format(username=self.username)
+
+
+class Message(SurrogatePK, Model):
+    """A message from a user to another user of the app."""
+
+    __tablename__ = 'messages'
+    from_user_id = reference_col('users', nullable=False)
+    from_user = db.relationship(
+        'User',
+        backref=db.backref('outbox', lazy='dynamic', uselist=True),
+        foreign_keys='Message.from_user_id')
+
+    to_user_id = reference_col('users', nullable=False)
+    to_user = db.relationship(
+        'User',
+        backref=db.backref('inbox', lazy='dynamic', uselist=True),
+        foreign_keys='Message.to_user_id')
+
+    body = Column(db.Text(), nullable=False)
+
+    created_at = Column(db.DateTime, nullable=False, default=dt.datetime.utcnow)
+    is_read = Column(db.Boolean, nullable=False, default=False)
+
+    @classmethod
+    def messages_between(cls, user_a, user_b):
+        """Return a partial query for all messages between two users."""
+        messages = cls.query.filter(
+            db.or_(db.and_(cls.from_user_id == user_a.id,
+                           cls.to_user_id == user_b.id),
+                   db.and_(cls.from_user_id == user_b.id,
+                           cls.to_user_id == user_a.id)))
+
+        return messages
+
+    @classmethod
+    def threads_involving(cls, user):
+        """Return a partial query for all threads this user involved in."""
+        threads = cls.query.with_entities(cls.from_user_id,
+                                          cls.to_user_id,
+                                          cls.is_read,
+                                          db.func.max(cls.created_at))\
+                     .filter(db.or_(cls.from_user_id == user.id,
+                                    cls.to_user_id == user.id))\
+                     .group_by(cls.from_user_id, cls.to_user_id)
+
+        return threads
+
+    def __repr__(self):
+        """Represent instance as a unique string."""
+        return '<Message({from_user}=>{to_user}: {body})>'.format(
+            from_user=self.from_user_id,
+            to_user=self.to_user_id,
+            body=self.body[:24])

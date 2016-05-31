@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+{% block js %}
+<script src="{{ url_for('static', filename='js/messages.js') }}"></script>
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/messages.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col col-lg-4 text-center">
+    <div class="jumbotron">
+      <h3>
+        {% if current_user.user_type == 'parent' %}
+          Your Case Worker
+        {% else %}
+          Parent
+        {% endif %}
+      </h3>
+      <img class="img-circle user-profile" src="http://placehold.it/150x150">
+      <h5>{{ to_user.full_name }}</h5>
+      <ul class="list-group">
+        <li class="list-group-item"><strong>Phone:</strong> {{ to_user.phone_number }}</li>
+        <li class="list-group-item"><strong>Email:</strong> {{ to_user.email }}</li>
+        <li class="list-group-item"><strong>Address:</strong> {{ to_user.address }}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="col col-lg-8">
+    <div class="jumbotron">
+      <form method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <input type="hidden" name="to_username" value="{{ to_user.username }}"/>
+        <div class="form-group">
+          {{form.body.label}}
+          {{form.body(placeholder="Enter your message", class_="form-control")}}
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+
+      {% for message in messages %}
+      <div class="media">
+        {% if current_user.id == message.from_user_id %}
+          <div class="media-left">
+            <img class="img-circle media-object" src="http://placehold.it/70x70">
+          </div>
+          <div class="media-body">
+            <p class="media-heading">{{ message.body }}</p>
+            <em>{{ message.created_at }}</em>
+          </div>
+        {% else %}
+          <div class="media-body text-right {{ 'text-warning' if not message.is_read else 'text-default' }}">
+            <p class="media-heading">
+              {% if not message.is_read %}
+                <strong> {{ message.body }} </strong>
+              {% else %}
+                {{ message.body }}
+              {% endif %}
+            </p>
+            <em>{{ message.created_at }}</em>
+          </div>
+          <div class="media-right">
+            <img class="img-circle media-object" src="http://placehold.it/70x70">
+          </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div> <!-- /.row -->
+
+{% endblock %}
