@@ -109,7 +109,7 @@ class User(UserMixin, SurrogatePK, Model):
                 # I have unread messages in this thread if I received a message
                 # that is unread. If I was the most recent person to send a
                 # message, I should not have any unread messages.
-                has_unread = (self.id == to_id) and not is_read
+                has_unread = (self.id == to_id) and is_read == 0
 
                 thread['other_username'] = other_username
                 thread['last_updated'] = time
@@ -175,13 +175,14 @@ class Message(SurrogatePK, Model):
     @classmethod
     def threads_involving(cls, user):
         """Return a partial query for all threads this user involved in."""
-        threads = cls.query.with_entities(cls.from_user_id,
-                                          cls.to_user_id,
-                                          db.func.min(cls.is_read),
-                                          db.func.max(cls.created_at))\
-                     .filter(db.or_(cls.from_user_id == user.id,
-                                    cls.to_user_id == user.id))\
-                     .group_by(cls.from_user_id, cls.to_user_id)
+        threads = cls.query.with_entities(
+            cls.from_user_id,
+            cls.to_user_id,
+            db.func.min(db.cast(cls.is_read, db.SmallInteger())),
+            db.func.max(cls.created_at)
+            ).filter(db.or_(cls.from_user_id == user.id,
+                            cls.to_user_id == user.id)
+            ).group_by(cls.from_user_id, cls.to_user_id)
 
         return threads
 
