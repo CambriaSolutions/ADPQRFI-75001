@@ -177,7 +177,7 @@ class Message(SurrogatePK, Model):
         """Return a partial query for all threads this user involved in."""
         threads = cls.query.with_entities(cls.from_user_id,
                                           cls.to_user_id,
-                                          cls.is_read,
+                                          db.func.min(cls.is_read),
                                           db.func.max(cls.created_at))\
                      .filter(db.or_(cls.from_user_id == user.id,
                                     cls.to_user_id == user.id))\
