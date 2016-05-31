@@ -86,18 +86,29 @@ class User(UserMixin, SurrogatePK, Model):
 
     def threads_involved_in(self):
         """Return threads this user is involved in."""
-        threads = defaultdict(dict)
+        thread_list = []
+        users_seen = set()
+        users_seen.add(self.id)
+
         # De-duplicate threads for (2, 5) and (5, 2) into one.
         for (from_id, to_id, time) in Message.threads_involving(self).all():
-            if from_id == self.id:
-                # From me to someone else.
-                to_username = User.get_by_id(to_id).username
-                threads[to_username]['last_sent'] = time
-            else:
-                # From someone else to me.
-                from_username = User.get_by_id(from_id).username
-                threads[from_username]['last_received'] = time
-        return threads
+            # At least one of the users in this thread should be new.
+            if (from_id not in users_seen) or (to_id not in users_seen):
+                thread = {}
+                if from_id == self.id:
+                    # From me to someone else.
+                    other_username = User.get_by_id(to_id).username
+                    users_seen.add(to_id)
+                else:
+                    # From someone else to me.
+                    other_username = User.get_by_id(from_id).username
+                    users_seen.add(from_id)
+
+                thread['other_username'] = other_username
+                thread['last_updated'] = time
+                thread_list.append(thread)
+
+        return thread_list
 
     @classmethod
     def get_by_username(cls, username):

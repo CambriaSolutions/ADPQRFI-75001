@@ -10,14 +10,14 @@
 {% block content %}
 <div class="container">
   <div class="list-group">
-    {% for username in threads %}
-    <a href="{{ url_for('user.message_thread', to_username=username) }}" class="list-group-item">
+    {% for thread in threads %}
+    <a href="{{ url_for('user.message_thread', to_username=thread['other_username']) }}" class="list-group-item">
       <div class="row">
         <div class="col col-lg-7">
-          <p>Chat with <strong class="text-primary">{{ username }}</strong></p>
+          <p>Chat with <strong class="text-primary">{{ thread['other_username'] }}</strong></p>
         </div>
         <div class="col col-lg-5">
-          <p class="text-right"><em>{{ threads[username]['last_sent'].strftime('%Y-%m-%d %H:%M') }}</em></p>
+          <p class="text-right"><em>{{ thread['last_updated'].strftime('%Y-%m-%d %H:%M') }}</em></p>
         </div>
       </div>
     </a> {% endfor %}
