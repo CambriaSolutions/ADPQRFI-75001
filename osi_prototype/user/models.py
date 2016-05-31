@@ -89,8 +89,8 @@ class User(UserMixin, SurrogatePK, Model):
         users_seen.add(self.id)
 
         # De-duplicate threads for (2, 5) and (5, 2) into one.
-        ordered_threads = Message.threads_involving(self).order_by(
-            Message.created_at.desc()).all()
+        ordered_threads = Message.threads_involving(self).all()
+        ordered_threads.sort(key=lambda t: t[3], reverse=True)
 
         for (from_id, to_id, is_read, time) in ordered_threads:
             # At least one of the users in this thread should be unseen.
