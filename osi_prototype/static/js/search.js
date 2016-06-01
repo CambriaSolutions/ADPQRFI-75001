@@ -14,6 +14,15 @@ var user_marker = null;
 var active_marker = null;
 var all_markers = [];
 
+function find_zip_in(result) {
+  for (i in result.address_components) {
+    const component = result.address_components[i];
+    if (component.types.indexOf('postal_code') >= 0) {
+      return component.long_name;
+    }
+  }
+}
+
 function init_map() {
   const ca_latlng = {
     "lat" : 36.778261,
@@ -33,7 +42,9 @@ function init_map() {
 
   geocoder.geocode( { 'address': user_address}, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
-      map.setCenter(results[0].geometry.location);
+      const result = results[0];
+
+      map.setCenter(result.geometry.location);
       user_marker = new google.maps.Marker({
           map: map,
           position: results[0].geometry.location,
@@ -45,6 +56,10 @@ function init_map() {
       add_info_to_marker(user_marker, info_content);
 
       map.setZoom(13);
+
+      // Set search to zip in result, if found.
+      const geolocated_zip = find_zip_in(result);
+      run_search(geolocated_zip);
     } else {
       console.log("Geocode was not successful for the following reason: " + status);
     }
@@ -91,7 +106,6 @@ function render_results(results) {
   if (user_marker) bounds.extend(user_marker.getPosition());
 
   results.forEach(function (facility, index) {
-    console.log(facility);
     const address = facility.facility_address + '<br/>' +
                     facility.facility_city + ',' +
                     facility.facility_state + ' ' +
@@ -152,7 +166,12 @@ function validate_zip(group_id, validator) {
   }
 }
 
-function run_search() {
+function run_search(starting_zip) {
+  if (starting_zip) {
+    console.log(starting_zip);
+    $('#zip-group input').val(starting_zip);
+  }
+
   const facility_zip = validate_zip('#zip-group', is_valid_zip);
   if (!facility_zip) return;
 
@@ -164,5 +183,5 @@ function run_search() {
 }
 
 $(document).ready(function() {
-  $('#run-search').click(run_search);
+  $('#run-search').click(function() { run_search(); });
 });
