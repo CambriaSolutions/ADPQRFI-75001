@@ -5,7 +5,6 @@ import json
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
 
-from osi_prototype.assets import uploads
 from osi_prototype.database import db
 from osi_prototype.user.forms import EditForm, MessageForm
 from osi_prototype.user.models import Message, User
@@ -17,12 +16,8 @@ blueprint = Blueprint('user', __name__, static_folder='../static')
 @login_required
 def profile():
     """Show profile dashboard page."""
-    profile_photo = None
-    if current_user.profile_photo:
-        profile_photo = uploads.url(current_user.profile_photo)
-
     return render_template('user/profile.html',
-                           profile_photo=profile_photo)
+                           user=current_user)
 
 
 @blueprint.route('/profile/edit', methods=('POST',))
@@ -91,8 +86,7 @@ def message_thread(to_username):
 def upload():
     """Upload a photo to the upload set."""
     if 'photo' in request.files:
-        filename = uploads.save(request.files['photo'])
-        current_user.update(profile_photo=filename)
+        current_user.set_profile_photo(request.files['photo'])
         flash('Photo saved.', 'success')
     else:
         flash('Please provide a photo!', 'error')

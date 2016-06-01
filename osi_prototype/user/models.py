@@ -4,6 +4,7 @@ import datetime as dt
 
 from flask_login import UserMixin
 
+from osi_prototype.assets import uploads
 from osi_prototype.database import Column, Model, SurrogatePK, db, reference_col, relationship
 from osi_prototype.extensions import bcrypt
 
@@ -78,6 +79,18 @@ class User(UserMixin, SurrogatePK, Model):
     def full_name(self):
         """Full user name."""
         return '{0} {1}'.format(self.first_name, self.last_name)
+
+    def get_profile_photo(self, placeholder_size=100):
+        """Get a profile photo or return a placeholder image."""
+        if self.profile_photo:
+            return uploads.url(self.profile_photo)
+        else:
+            return 'http://placehold.it/{}'.format(placeholder_size)
+
+    def set_profile_photo(self, photo):
+        """Set a profile photo given a file."""
+        filename = uploads.save(photo)
+        self.update(profile_photo=filename)
 
     def messages_between(self, other, limit=10):
         """Return partial query for messages between this user and another user."""

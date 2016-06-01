@@ -26,11 +26,7 @@
             <div class="col col-lg-3">
               <div class="row text-center">
                 <div class="col col-lg-12">
-                  {% if profile_photo %}
-                    <img class="img-circle user-photo" src="{{profile_photo}}">
-                  {% else %}
-                    <img class="img-circle user-photo" src="http://placehold.it/70x70">
-                  {% endif %}
+                  <img class="img-circle user-photo" src="{{ current_user.get_profile_photo(70) }}">
                 </div>
               </div>
               <div class="row text-center">
@@ -46,7 +42,7 @@
                 </div>
               </div>
             </div>
-            <div class="col col-lg-9 vertical-align-col  user-brief">
+            <div class="col col-lg-9 vertical-align-col user-brief">
               <h3 class="text-primary">Hello, <span id="first-name-welcome">{{ current_user.first_name or current_user.username }}</span>.</h3>
               <div><p id="blurb" data-type="textarea" data-title="Enter blurb" data-rows="4">
                 {{ current_user.blurb or '' }}
