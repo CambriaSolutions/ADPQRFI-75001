@@ -33,7 +33,7 @@ def login():
     if request.method == 'POST':
         if form.validate_on_submit():
             login_user(form.user)
-            redirect_url = request.args.get('next') or url_for('user.profile')
+            redirect_url = request.args.get('next') or url_for('user.messages')
             return redirect(redirect_url)
         else:
             flash_errors(form)
