@@ -34,6 +34,8 @@ You will need to open a new terminal to see the changes take effect.
 Then run the following commands to bootstrap your environment with Python 3 and
 all development requirements.
 
+    sudo gem install bundle
+    bundle install
     mkvirtualenv proto
     workon proto
     pip install -r requirements/dev.txt
