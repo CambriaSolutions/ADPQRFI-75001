@@ -50,9 +50,9 @@
             <em>{{ message.created_at }}</em>
           </div>
         {% else %}
-          <div class="media-body text-right {{ 'text-warning' if not message.is_read else 'text-default' }}">
+          <div class="media-body text-right {{ 'text-warning' if message.is_unread else 'text-default' }}">
             <p class="media-heading">
-              {% if not message.is_read %}
+              {% if message.is_unread %}
                 <strong> {{ message.body }} </strong>
               {% else %}
                 {{ message.body }}
