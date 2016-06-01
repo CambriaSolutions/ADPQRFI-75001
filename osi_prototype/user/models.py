@@ -92,7 +92,7 @@ class User(UserMixin, SurrogatePK, Model):
         ordered_threads = Message.threads_involving(self).all()
         ordered_threads.sort(key=lambda t: t[3], reverse=True)
 
-        for (from_id, to_id, is_read, time) in ordered_threads:
+        for (from_id, to_id, is_unread, time) in ordered_threads:
             # At least one of the users in this thread should be unseen.
             if (from_id not in users_seen) or (to_id not in users_seen):
                 thread = {}
@@ -109,7 +109,7 @@ class User(UserMixin, SurrogatePK, Model):
                 # I have unread messages in this thread if I received a message
                 # that is unread. If I was the most recent person to send a
                 # message, I should not have any unread messages.
-                has_unread = (self.id == to_id) and is_read == 0
+                has_unread = (self.id == to_id) and is_unread == 1
 
                 thread['other_username'] = other_username
                 thread['last_updated'] = time
@@ -123,7 +123,7 @@ class User(UserMixin, SurrogatePK, Model):
         # Select count(*) from messages where to_user_id = CurrentUser and is_read = 0.
         return Message.query\
                       .filter(Message.to_user_id == self.id,
-                              Message.is_read == False)\
+                              Message.is_unread == 1)\
                       .count()
 
     @classmethod
@@ -159,7 +159,7 @@ class Message(SurrogatePK, Model):
     body = Column(db.Text(), nullable=False)
 
     created_at = Column(db.DateTime, nullable=False, default=dt.datetime.utcnow)
-    is_read = Column(db.Boolean, nullable=False, default=False)
+    is_unread = Column(db.SmallInteger(), nullable=True, default=1)
 
     @classmethod
     def messages_between(cls, user_a, user_b):
@@ -178,7 +178,7 @@ class Message(SurrogatePK, Model):
         threads = cls.query.with_entities(
             cls.from_user_id,
             cls.to_user_id,
-            db.func.min(db.cast(cls.is_read, db.SmallInteger())),
+            db.func.min(cls.is_unread),
             db.func.max(cls.created_at)
             ).filter(db.or_(cls.from_user_id == user.id,
                             cls.to_user_id == user.id)

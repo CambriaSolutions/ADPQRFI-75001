@@ -63,7 +63,8 @@ def message_thread(to_username):
     if form.validate_on_submit():
         Message.create(from_user=current_user,
                        to_user=to_user,
-                       body=form.body.data, is_read=False)
+                       body=form.body.data,
+                       is_unread=1)
         flash('Your message has been sent!', 'success')
     else:
         print(form.errors)
@@ -76,7 +77,7 @@ def message_thread(to_username):
                                form=form)
 
     # Update messages to this user as read.
-    messages.filter_by(to_user_id=current_user.id).update({'is_read': True})
+    messages.filter_by(to_user_id=current_user.id).update({'is_unread': 0})
     db.session.commit()
 
     return rendered

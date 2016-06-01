@@ -1,13 +1,13 @@
-"""messages table
+"""messages
 
-Revision ID: 0c2fbfa95d71
+Revision ID: eef6112170df
 Revises: 1751b765c9db
-Create Date: 2016-05-30 19:16:18.796062
+Create Date: 2016-06-01 00:13:38.326671
 
 """
 
 # revision identifiers, used by Alembic.
-revision = '0c2fbfa95d71'
+revision = 'eef6112170df'
 down_revision = '1751b765c9db'
 
 from alembic import op
@@ -22,7 +22,7 @@ def upgrade():
     sa.Column('to_user_id', sa.Integer(), nullable=False),
     sa.Column('body', sa.Text(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
-    sa.Column('is_read', sa.Boolean(), nullable=False),
+    sa.Column('is_unread', sa.SmallInteger(), nullable=True),
     sa.ForeignKeyConstraint(['from_user_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['to_user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
