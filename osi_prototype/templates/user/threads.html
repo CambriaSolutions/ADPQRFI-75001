@@ -51,7 +51,7 @@
           </p>
         </div>
         <div class="col col-lg-5">
-          <p class="text-right"><em>{{ thread['last_updated'].strftime('%Y-%m-%d %H:%M') }}</em></p>
+          <p class="text-right"><em>{{ thread['last_updated'] | utc_to_pst | format_dt }}</em></p>
         </div>
       </div>
     </a> {% endfor %}
