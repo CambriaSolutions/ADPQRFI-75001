@@ -7,12 +7,22 @@ const FACILITY_TYPES = [
 ];
 const DEFAULT_ICON = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
 const SELECTED_ICON = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+const USER_MARKER_ICON = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
 
 var map = null;
 var geocoder = null;
 var user_marker = null;
 var active_marker = null;
 var all_markers = [];
+
+function get_search_type() {
+  const type_id = parseInt($('#facility-type option:selected').data('field'));
+  return FACILITY_TYPES[type_id];
+}
+
+function get_search_location() {
+  return $('#facility-location').val();
+}
 
 function find_zip_in(result) {
   for (i in result.address_components) {
@@ -39,31 +49,7 @@ function init_map() {
   geocoder = new google.maps.Geocoder();
 
   if (user_address == null) return;
-
-  geocoder.geocode( { 'address': user_address}, function(results, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-      const result = results[0];
-
-      map.setCenter(result.geometry.location);
-      user_marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location,
-          icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
-      });
-
-      // Add info window to marker.
-      const info_content = "<b>Home:</b> " + user_address;
-      add_info_to_marker(user_marker, info_content);
-
-      map.setZoom(13);
-
-      // Set search to zip in result, if found.
-      const geolocated_zip = find_zip_in(result);
-      run_search(geolocated_zip);
-    } else {
-      console.log("Geocode was not successful for the following reason: " + status);
-    }
-  });
+  run_location_search(user_address);
 }
 
 function add_info_to_marker(marker, content) {
@@ -77,6 +63,27 @@ function search_facilities_by_zip(facility_zip, facility_type, cb) {
   var params = {
     facility_type: facility_type,
     facility_zip: facility_zip,
+  };
+  if (facility_type == "<all>") delete params.facility_type;
+  const url = CHHS_API_URL + "?" + $.param(params);
+
+  $.ajax(url, {
+    dataType: 'json'
+  }).done(function (results) {
+    cb(results);
+  });
+}
+
+function search_facilities_within_radius(location, facility_type, radius_mi, cb) {
+  // $where=within_circle(location, 34.09, -117.67, 1000)
+  const radius_m = radius_mi * 1609.34;  // 5 mi in m
+  var params = {
+    '$limit': 10,
+    '$where': 'within_circle(location,' +
+              location.lat().toString() + ',' +
+              location.lng().toString() + ',' +
+              radius_m + ')',
+    facility_type: facility_type,
   };
   if (facility_type == "<all>") delete params.facility_type;
   const url = CHHS_API_URL + "?" + $.param(params);
@@ -166,9 +173,8 @@ function validate_zip(group_id, validator) {
   }
 }
 
-function run_search(starting_zip) {
+function run_zip_search(starting_zip) {
   if (starting_zip) {
-    console.log(starting_zip);
     $('#zip-group input').val(starting_zip);
   }
 
@@ -182,6 +188,41 @@ function run_search(starting_zip) {
   search_facilities_by_zip(facility_zip, facility_type, render_results);
 }
 
+
+function run_location_search(starting_location) {
+  if (starting_location) {
+    $('#zip-group input').val(starting_location);
+  }
+
+  const location_text = get_search_location();
+  console.log("Running geocoding for: ", location_text);
+
+  geocoder.geocode( { 'address': location_text }, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      const result = results[0];
+      map.setCenter(result.geometry.location);
+
+      if (user_marker) user_marker.setMap(null);
+      user_marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location,
+          icon: USER_MARKER_ICON
+      });
+
+      const info_content = "<b>Home:</b> " + user_address;
+      add_info_to_marker(user_marker, info_content);
+
+      map.setZoom(13);
+
+      // Set search to location in result, if found.
+      search_facilities_within_radius(result.geometry.location, get_search_type(), 5, render_results);
+    } else {
+      console.log("Geocode was not successful for the following reason: " + status);
+    }
+  });
+}
+
+
 $(document).ready(function() {
-  $('#run-search').click(function() { run_search(); });
+  $('#run-search').click(function() { run_location_search(); });
 });
