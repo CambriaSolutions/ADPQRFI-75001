@@ -27,3 +27,12 @@
     margin-bottom: -99999px;
     padding-bottom: 99999px;
 }
+
+.user-photo {
+  width: 70px;
+  height: 70px;
+}
+
+#real-file-upload {
+  display: none;
+}

@@ -43,6 +43,7 @@ class User(UserMixin, SurrogatePK, Model):
     address = Column(db.String(128), nullable=True)
     license_number = Column(db.String(32), nullable=True)
     phone_number = Column(db.String(32), nullable=True)
+    profile_photo = Column(db.String(64), nullable=True)
 
     num_adults = Column(db.SmallInteger(), nullable=True, default=1)
     num_children = Column(db.SmallInteger(), nullable=True, default=0)

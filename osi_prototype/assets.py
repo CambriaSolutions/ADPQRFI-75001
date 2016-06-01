@@ -3,6 +3,7 @@
 import os
 
 from flask_assets import Bundle, Environment
+from flask_uploads import IMAGES, UploadSet
 from webassets.filter import get_filter
 
 BASE_DIR = os.path.dirname(os.path.realpath(__file__))
@@ -44,3 +45,6 @@ assets = Environment()
 
 assets.register('js_all', js)
 assets.register('css_all', css)
+
+uploads = UploadSet('uploads', IMAGES,
+                    default_dest=lambda app: os.path.join(app.static_folder, 'uploads'))

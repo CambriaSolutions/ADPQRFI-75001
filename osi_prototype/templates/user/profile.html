@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block js %}
+<script src="{{ url_for('static', filename='js/dropzone.js') }}"></script>
 <script src="{{ url_for('static', filename='js/profile.js') }}"></script>
 {% endblock %}
 
@@ -8,8 +9,10 @@
 {% endblock %}
 
 {% block content %}
+{% set generated_csrf_token = csrf_token() %}
+
 <!-- For safe form submission -->
-<meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="csrf-token" content="{{ generated_csrf_token }}">
 
 <div class="row">
   <div class="col col-lg-12">
@@ -22,7 +25,25 @@
         <div class="col col-lg-4">
           <div class="row vertical-align">
             <div class="col col-lg-3">
-              <img class="img-circle user-photo" src="http://placehold.it/70x70">
+              <div class="row text-center">
+                <div>
+                  {% if profile_photo %}
+                    <img class="img-circle user-photo" src="{{profile_photo}}">
+                  {% else %}
+                    <img class="img-circle user-photo" src="http://placehold.it/70x70">
+                  {% endif %}
+                </div>
+              </div>
+              <div class="row text-center">
+                <button id="fake-file-upload" class="btn btn-primary btn-xs">
+                  <i class="glyphicon glyphicon-upload"></i>
+                  <span>Upload</span>
+                </button>
+                <form id="user-photo-upload" action="{{ url_for('user.upload') }}" enctype=multipart/form-data method="POST">
+                  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                  <input type="file" id="real-file-upload" name="photo">
+                </form>
+              </div>
             </div>
             <div class="col col-lg-9 vertical-align-col  user-brief">
               <h3 class="text-primary">Hello, <span id="first-name-welcome">{{ current_user.first_name or current_user.username }}</span>.</h3>

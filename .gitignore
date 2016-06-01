@@ -87,9 +87,9 @@ ENV/
 # Rope project settings
 .ropeproject
 
-# Misc
+# Project-related
 bower_components/
 dev.db
 common.css
 common.js
-
+osi_prototype/static/uploads/

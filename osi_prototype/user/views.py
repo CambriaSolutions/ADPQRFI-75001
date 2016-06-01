@@ -2,9 +2,10 @@
 """User views."""
 import json
 
-from flask import Blueprint, flash, render_template, request
+from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
 
+from osi_prototype.assets import uploads
 from osi_prototype.database import db
 from osi_prototype.user.forms import EditForm, MessageForm
 from osi_prototype.user.models import Message, User
@@ -16,7 +17,12 @@ blueprint = Blueprint('user', __name__, static_folder='../static')
 @login_required
 def profile():
     """Show profile dashboard page."""
-    return render_template('user/profile.html')
+    profile_photo = None
+    if current_user.profile_photo:
+        profile_photo = uploads.url(current_user.profile_photo)
+
+    return render_template('user/profile.html',
+                           profile_photo=profile_photo)
 
 
 @blueprint.route('/profile/edit', methods=('POST',))
@@ -37,7 +43,6 @@ def edit_profile():
             for error in field_errors:
                 message = error
                 break
-        print(message)
         return json.dumps({'success': False, 'message': message})
 
 
@@ -66,8 +71,6 @@ def message_thread(to_username):
                        body=form.body.data,
                        is_unread=1)
         flash('Your message has been sent!', 'success')
-    else:
-        print(form.errors)
     messages = current_user.messages_between(to_user)
 
     ordered_messages = messages.order_by(Message.created_at.desc()).all()
@@ -81,3 +84,17 @@ def message_thread(to_username):
     db.session.commit()
 
     return rendered
+
+
+@blueprint.route('/upload/', methods=['POST'])
+@login_required
+def upload():
+    print(request.form)
+    if 'photo' in request.files:
+        filename = uploads.save(request.files['photo'])
+        current_user.update(profile_photo=filename)
+        print(filename)
+        flash('Photo saved.', 'success')
+    else:
+        flash('Please provide a photo!', 'error')
+    return redirect(url_for('.profile'))
