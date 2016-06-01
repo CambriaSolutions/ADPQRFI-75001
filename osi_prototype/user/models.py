@@ -180,9 +180,9 @@ class Message(SurrogatePK, Model):
             cls.to_user_id,
             db.func.min(cls.is_unread),
             db.func.max(cls.created_at)
-            ).filter(db.or_(cls.from_user_id == user.id,
-                            cls.to_user_id == user.id)
-            ).group_by(cls.from_user_id, cls.to_user_id)
+        ).filter(db.or_(cls.from_user_id == user.id,
+                        cls.to_user_id == user.id))\
+         .group_by(cls.from_user_id, cls.to_user_id)
 
         return threads
 
