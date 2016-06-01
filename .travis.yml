@@ -1,13 +1,15 @@
-# Config file for automatic testing at travis-ci.org
-sudo: false  # http://docs.travis-ci.com/user/migrating-from-legacy/
+sudo: false
 language: python
 python:
-  - 2.7
-  - 3.3
-  - 3.4
-  - 3.5
-before_install:
-  - gem install sass
+- 2.7
+- 3.3
+- 3.4
+- 3.5
 install: pip install -r requirements/dev.txt
 before_script: python manage.py lint
 script: python manage.py test
+deploy:
+  provider: heroku
+  run: "python manage.py db upgrade"
+  api_key:
+    secure: Xb6ieWNnAe7enh8lFKXkKcEZXi3XQr454oh88HJVjZJEXmJI6ssILLbmUbnLbp9HELTqYN2DduMjf9yNEbtXLqiFA7X/4RhB/yuq9gG4lHrSnwp16NAJ3yqVeDs0HVz+mwYbNeOjKf81GNGotBiiASVzS5s1VGGlU4b/qFBOjFDUczz5+Y/ocOcivRXUoL+O/vPQeDcjJUFPZoj0yAXUwQgp9zdLaahW5cIquzateT6SmnWiiH5JSBEh379r+omJALaTlDC/rpCM429ma9Kucclub1AAcA01oT1ZAavENLdCOO1A9g/yQzg6x+AvqYYc0Z6fMhxM+l1OkwPxc6q0DeJrAeD6SNPwbH6M6FHD0eevZyLUl46gWrijYR8TeepcBB8KvHiuskoJMDgIcHAzMZHXmMRRYrOiXfB3bFoYOrgmFm/DM4JdHN4EnUX8vCbk5QduLK5ES+7F4u4pC+9OuS0gkhZd7Gb5b/et37EHEgRDFr2HuGS9h6+dY9ODpTQywrs3eWbrUy9Zbpj+4eef1KWaVrPYsn2ntaZJeaoaEBl5n45xWde5AE+J+atn+GMjYPvxAELZomL+eyVYiKL2/2G8XUhFbLLztxUPKCu5PMnVOCRnKVcDN0T28BVz71soznxJe+smSPzz2S5ryhmnRrNd/Ruy1Pg2XF7AzcuqxPU=
