@@ -89,11 +89,10 @@ def message_thread(to_username):
 @blueprint.route('/upload/', methods=['POST'])
 @login_required
 def upload():
-    print(request.form)
+    """Upload a photo to the upload set."""
     if 'photo' in request.files:
         filename = uploads.save(request.files['photo'])
         current_user.update(profile_photo=filename)
-        print(filename)
         flash('Photo saved.', 'success')
     else:
         flash('Please provide a photo!', 'error')

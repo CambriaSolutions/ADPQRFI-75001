@@ -57,5 +57,5 @@ def register_errorhandlers(app):
 
 
 def register_uploadsets(app):
-    """Registers upload sets."""
+    """Register upload sets."""
     configure_uploads(app, (uploads,))
