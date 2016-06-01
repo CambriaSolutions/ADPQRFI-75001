@@ -95,8 +95,7 @@ function render_results(results) {
     const address = facility.facility_address + '<br/>' +
                     facility.facility_city + ',' +
                     facility.facility_state + ' ' +
-                    facility.facility_zip + '<br/>' ; // +
-                  //  facility.facility_capacity + ' '; // <-- This isn't required
+                    facility.facility_zip + '<br/>';
 
     // Add facility to table.
     const record = $('<a class="list-group-item">').append(
@@ -105,7 +104,7 @@ function render_results(results) {
         $('<strong>').text(facility.facility_name),
         $('<div>').html(address),  // CAREFUL HERE, potentially unsafe.
         $('<div>').text(facility.facility_telephone_number),
-        $('<div>').text('Capacity:' + facility.facility_capacity)  // <-- This is enough
+        $('<div>').text('Capacity: ' + facility.facility_capacity)
     )).appendTo('#results-list');
 
     // Create a marker and set its position.
