@@ -66,6 +66,9 @@ def message_thread(to_username):
                        body=form.body.data,
                        is_unread=1)
         flash('Your message has been sent!', 'success')
+        form.body.data = ''
+    else:
+        flash('Your message must contain at least 3 characters.', 'warning')
     messages = current_user.messages_between(to_user)
 
     ordered_messages = messages.order_by(Message.created_at.desc()).all()
