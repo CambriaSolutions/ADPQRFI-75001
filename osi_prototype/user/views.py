@@ -67,7 +67,7 @@ def message_thread(to_username):
                        is_unread=1)
         flash('Your message has been sent!', 'success')
         form.body.data = ''
-    else:
+    elif request.method == 'POST':
         flash('Your message must contain at least 3 characters.', 'warning')
     messages = current_user.messages_between(to_user)
 
