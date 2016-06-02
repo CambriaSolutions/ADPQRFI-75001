@@ -50,7 +50,8 @@ def messages():
         users = User.query.filter_by(user_type='agent')
     else:
         users = User.query.filter_by(user_type='parent')
-    return render_template('user/threads.html', threads=threads, users=users)
+    users_by_username = { user.username: user for user in users }
+    return render_template('user/threads.html', threads=threads, users=users_by_username)
 
 
 @blueprint.route('/messages/<to_username>', methods=['GET', 'POST'])
