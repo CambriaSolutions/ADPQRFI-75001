@@ -5,7 +5,7 @@ See: http://webtest.readthedocs.org/
 """
 from flask import url_for
 
-from osi_prototype.user.models import User
+from osi_prototype.user.models import Message, User
 
 from .factories import UserFactory
 
@@ -16,7 +16,7 @@ class TestLoggingIn:
     def test_can_log_in_returns_200(self, user, testapp):
         """Login successful."""
         # Goes to homepage
-        res = testapp.get('/login/')
+        res = testapp.get(url_for('public.login'))
         # Fills out login form in navbar
         form = res.forms['loginForm']
         form['username'] = user.username
@@ -27,7 +27,7 @@ class TestLoggingIn:
 
     def test_sees_alert_on_log_out(self, user, testapp):
         """Show alert on logout."""
-        res = testapp.get('/login/')
+        res = testapp.get(url_for('public.login'))
         # Fills out login form in navbar
         form = res.forms['loginForm']
         form['username'] = user.username
@@ -41,7 +41,7 @@ class TestLoggingIn:
     def test_sees_error_message_if_password_is_incorrect(self, user, testapp):
         """Show error if password is incorrect."""
         # Goes to homepage
-        res = testapp.get('/login/')
+        res = testapp.get(url_for('public.login'))
         # Fills out login form, password incorrect
         form = res.forms['loginForm']
         form['username'] = user.username
@@ -54,7 +54,7 @@ class TestLoggingIn:
     def test_sees_error_message_if_username_doesnt_exist(self, user, testapp):
         """Show error if username doesn't exist."""
         # Goes to homepage
-        res = testapp.get('/login/')
+        res = testapp.get(url_for('public.login'))
         # Fills out login form, password incorrect
         form = res.forms['loginForm']
         form['username'] = 'unknown'
@@ -124,3 +124,35 @@ class TestRegistering:
         res = form.submit()
         # sees error
         assert 'Username already registered' in res
+
+
+class TestMessaging:
+    """Send a message to another user."""
+
+    def test_can_send_message(self, logged_in_user, user, testapp):
+        """Send a message to another user."""
+        old_count = len(Message.query.all())
+        res = testapp.get(url_for('user.message_thread', to_username=user.username))
+        # Fills out the form
+        form = res.forms['message_form']
+        form['body'] = 'hello, world'
+        # Submits
+        res = form.submit()
+        assert res.status_code == 200
+        assert 'message has been sent' in res
+        # A new message was created
+        assert len(Message.query.all()) == old_count + 1
+
+    def test_sees_error_message_if_body_too_short(self, logged_in_user, user, testapp):
+        """Show error if message is too short."""
+        old_count = len(Message.query.all())
+        res = testapp.get(url_for('user.message_thread', to_username=user.username))
+        # Fills out the form
+        form = res.forms['message_form']
+        form['body'] = 'x'
+        # Submits
+        res = form.submit()
+        assert res.status_code == 200
+        assert 'message must contain at least' in res
+        # A new message was created
+        assert len(Message.query.all()) == old_count

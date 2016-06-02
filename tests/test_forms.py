@@ -2,7 +2,7 @@
 """Test forms."""
 
 from osi_prototype.public.forms import LoginForm
-from osi_prototype.user.forms import RegisterForm
+from osi_prototype.user.forms import EditForm, MessageForm, RegisterForm
 
 
 class TestRegisterForm:
@@ -35,6 +35,26 @@ class TestRegisterForm:
                             password='example', confirm='example',
                             usertype='parent')
         assert form.validate() is True
+
+    def test_validate_missing_fields(self, db):
+        """Register with failure due to missing fields."""
+        form = RegisterForm(username='test', email='foo@bar.com',
+                            password='example', confirm='example',
+                            usertype='parent')
+
+        assert form.validate() is False
+        assert any('required' in e for e in form.lastname.errors)
+        assert any('required' in e for e in form.firstname.errors)
+
+    def test_validate_bad_user_type(self, db):
+        """Register with failure due to bad user type."""
+        form = RegisterForm(firstname='first', lastname='last',
+                            username='test', email='foo@bar.com',
+                            password='example', confirm='example',
+                            usertype='bad')
+
+        assert form.validate() is False
+        assert any('valid choice' in e for e in form.usertype.errors)
 
 
 class TestLoginForm:
@@ -72,3 +92,26 @@ class TestLoginForm:
         form = LoginForm(username=user.username, password='example')
         assert form.validate() is False
         assert 'User not activated' in form.username.errors
+
+
+class TestEditForm:
+    """Edit form."""
+
+    def test_validate_no_edits(self, user):
+        """Successful even with no edits."""
+        form = EditForm()
+        assert form.validate() is True
+
+
+class TestMessageForm:
+    """Message form."""
+
+    def test_validate_success(self, user):
+        """Successful message sent."""
+        form = MessageForm(from_username='abc', to_username='def', body='xyz')
+        assert form.validate() is True
+
+    def test_validate_message_too_short(self, user):
+        """Message too short."""
+        form = MessageForm(from_username='abc', to_username='def', body='xy')
+        assert form.validate() is False

@@ -2,7 +2,7 @@
 """Defines fixtures available to all tests."""
 
 import pytest
-from webtest import TestApp
+from flask_webtest import TestApp
 
 from osi_prototype.app import create_app
 from osi_prototype.database import db as _db
@@ -48,4 +48,14 @@ def user(db):
     """A user for the tests."""
     user = UserFactory(password='myprecious')
     db.session.commit()
+    return user
+
+
+@pytest.fixture
+def logged_in_user(db, testapp):
+    """Another user for the tests."""
+    user = UserFactory(password='passw0rd')
+    db.session.commit()
+    with testapp.session_transaction() as sess:
+        sess['user_id'] = 1
     return user

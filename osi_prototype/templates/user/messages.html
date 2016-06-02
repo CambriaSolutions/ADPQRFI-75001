@@ -29,7 +29,7 @@
   </div>
   <div class="col col-lg-8">
     <div class="jumbotron">
-      <form method="POST">
+      <form method="POST" id="message_form">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
         <input type="hidden" name="to_username" value="{{ to_user.username }}"/>
         <div class="form-group">

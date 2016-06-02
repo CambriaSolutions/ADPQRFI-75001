@@ -27,7 +27,6 @@ class RegisterForm(Form):
     def __init__(self, *args, **kwargs):
         """Create instance."""
         super(RegisterForm, self).__init__(*args, **kwargs)
-        self.user = None
 
     def validate(self):
         """Validate the form."""
@@ -90,7 +89,6 @@ class EditForm(Form):
     def __init__(self, *args, **kwargs):
         """Create instance."""
         super(EditForm, self).__init__(*args, **kwargs)
-        self.user = None
 
     def validate(self):
         """Validate the form."""
@@ -117,11 +115,3 @@ class MessageForm(Form):
                               validators=[DataRequired(), Length(min=3, max=30)])
     body = TextAreaField('New Message',
                          validators=[DataRequired(), Length(min=3, max=1500)])
-
-    def validate(self):
-        """Validate the form."""
-        initial_validation = super(MessageForm, self).validate()
-        if not initial_validation:
-            return False
-
-        return True

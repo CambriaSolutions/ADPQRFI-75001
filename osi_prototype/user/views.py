@@ -24,6 +24,7 @@ def profile():
 @login_required
 def edit_profile():
     """Show profile dashboard page."""
+    print(request.form)
     form = EditForm(request.form)
     if form.validate_on_submit():
         updates = {k: v for k, v in form.data.items()
