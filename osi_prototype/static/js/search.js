@@ -5,6 +5,7 @@ const FACILITY_TYPES = [
   "FOSTER FAMILY AGENCY",
   "FOSTER FAMILY AGENCY SUB"
 ];
+const LABELS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const DEFAULT_ICON = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
 const SELECTED_ICON = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
 const USER_MARKER_ICON = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
@@ -14,6 +15,7 @@ var geocoder = null;
 var user_marker = null;
 var active_marker = null;
 var all_markers = [];
+var highest_z_index = 0;
 
 function get_search_type() {
   const type_id = parseInt($('#facility-type option:selected').data('field'));
@@ -77,8 +79,21 @@ function search_facilities_by_zip(facility_zip, facility_type, cb) {
 function search_facilities_within_radius(location, facility_type, radius_mi, cb) {
   // $where=within_circle(location, 34.09, -117.67, 1000)
   const radius_m = radius_mi * 1609.34;  // 5 mi in m
+
+  // Draw circle around location.
+  const circle = new google.maps.Circle({
+    strokeColor: '#F0573E',
+    strokeOpacity: 0.75,
+    strokeWeight: 2,
+    fillColor: '#F0573E',
+    fillOpacity: 0.05,
+    map: map,
+    center: location,
+    radius: radius_m
+  });
+
   var params = {
-    '$limit': 10,
+    //'$limit': 10,
     '$where': 'within_circle(location,' +
               location.lat().toString() + ',' +
               location.lng().toString() + ',' +
@@ -95,13 +110,19 @@ function search_facilities_within_radius(location, facility_type, radius_mi, cb)
   });
 }
 
-function render_results(results) {
-  // Clear previous results.
+function clear_results() {
+  if (user_marker) user_marker.setMap(null);
   $('#results-list').empty();
   all_markers.forEach(function (marker) {
     marker.setMap(null);
   });
   all_markers = [];
+  highest_z_index = 0;
+}
+
+function render_results(results) {
+  $('#num-results').text(results.length);
+  highest_z_index = results.length;
 
   if (results.length == 0) {
     $('#results-list').html('<p>No results to show.</p>');
@@ -121,7 +142,7 @@ function render_results(results) {
     // Add facility to table.
     const record = $('<a class="list-group-item">').append(
       $('<address>').append(
-        $('<em class="text-primary">').text(index + 1 + '. '),
+        $('<em class="text-primary">').text(LABELS[index % LABELS.length] + '. '),
         $('<strong>').text(facility.facility_name),
         $('<div>').html(address),  // CAREFUL HERE, potentially unsafe.
         $('<div>').text(facility.facility_telephone_number),
@@ -138,12 +159,14 @@ function render_results(results) {
       map: map,
       position: coords,
       title: facility.facility_name,
-      label: (index + 1).toString()
+      label: LABELS[index % LABELS.length],
+      zIndex: index
     });
     add_info_to_marker(marker, facility.facility_name);
     record.click(function () {
       // Zoom to location.
       map.setCenter(marker.getPosition());
+      marker.setZIndex(highest_z_index++);
       active_marker = marker;
     })
     bounds.extend(marker.getPosition());
@@ -190,6 +213,8 @@ function run_zip_search(starting_zip) {
 
 
 function run_location_search(starting_location) {
+  clear_results();
+
   if (starting_location) {
     $('#zip-group input').val(starting_location);
   }
@@ -202,7 +227,6 @@ function run_location_search(starting_location) {
       const result = results[0];
       map.setCenter(result.geometry.location);
 
-      if (user_marker) user_marker.setMap(null);
       user_marker = new google.maps.Marker({
           map: map,
           position: results[0].geometry.location,
@@ -224,5 +248,5 @@ function run_location_search(starting_location) {
 
 
 $(document).ready(function() {
-  $('#run-search').click(function() { run_location_search(); });
+  //$('#run-search').click(function() { run_location_search(); });
 });

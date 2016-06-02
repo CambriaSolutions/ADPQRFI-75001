@@ -26,7 +26,7 @@
         <div id="search-options" class="panel-collapse collapse in" role="tabpanel">
           <ul class="list-group">
             <li class="list-group-item">
-              <form action="javascript:run_search()">
+              <form action="javascript:run_location_search()">
                 <div id="zip-group" class="form-group has-feedback">
                   <label for="location">Search in:</label>
                   <input type="text" class="form-control" id="facility-location" placeholder="Address/Zip/City">
@@ -45,6 +45,7 @@
                 <button id="run-search" type="submit" class="btn btn-default">
                   <i class="fa fa-search" aria-hidden="true"></i> Search
                 </button>
+                <div class="pull-right"><span id="num-results">no</span> results</div>
               </form>
             </li>
           </ul>
