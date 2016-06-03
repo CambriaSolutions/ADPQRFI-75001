@@ -45,7 +45,7 @@ class User(UserMixin, SurrogatePK, Model):
     license_number = Column(db.String(32), nullable=True)
     phone_number = Column(db.String(32), nullable=True)
     profile_photo = Column(db.String(64), nullable=True)
-    profile_image = Column(db.BLOB())
+    profile_image = Column(db.LargeBinary())
 
     num_adults = Column(db.SmallInteger(), nullable=True, default=1)
     num_children = Column(db.SmallInteger(), nullable=True, default=0)
