@@ -52,7 +52,7 @@ class EditForm(Form):
     email = StringField(
         'Email', validators=[Optional(), Email(), Length(min=6, max=40)])
     address = StringField(
-        'Address', validators=[Optional(), Length(min=6, max=128)])
+        'Address', validators=[Optional(), Length(min=5, max=128)])
     first_name = StringField(
         'First name', validators=[Optional(), Length(min=1, max=40)])
     last_name = StringField(
