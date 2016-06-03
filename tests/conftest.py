@@ -53,7 +53,7 @@ def user(db):
 
 @pytest.fixture
 def logged_in_user(db, testapp):
-    """Another user for the tests."""
+    """A logged-in user for the tests."""
     user = UserFactory(password='passw0rd')
     db.session.commit()
     with testapp.session_transaction() as sess:
