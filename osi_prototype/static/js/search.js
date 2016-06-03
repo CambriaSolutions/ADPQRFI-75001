@@ -16,8 +16,6 @@ var geocoder = null;
 var user_marker = null;
 var active_marker = null;
 var circle = null;
-var all_markers = [];
-var highest_z_index = 0;
 
 function get_search_type() {
   const type_id = parseInt($('#facility-type option:selected').data('field'));
@@ -54,6 +52,11 @@ function init_map() {
     scrollwheel: true,
     zoom: 7,
   });
+
+  var options = {
+      imagePath: '/static/img/m'
+  };
+  marker_clusterer = new MarkerClusterer(map, [], options);
 
   geocoder = new google.maps.Geocoder();
 
@@ -133,12 +136,8 @@ function search_facilities_within_radius(location, facility_type, radius_mi, cb)
 
 function clear_results() {
   if (user_marker) user_marker.setMap(null);
+  marker_clusterer.clearMarkers();
   $('#results-list').empty();
-  all_markers.forEach(function (marker) {
-    marker.setMap(null);
-  });
-  all_markers = [];
-  highest_z_index = 0;
 }
 
 function render_results(results) {
@@ -149,10 +148,6 @@ function render_results(results) {
     $('#results-list').html('<p>No results to show.</p>');
     return;
   }
-
-  var bounds = new google.maps.LatLngBounds();
-  // Always add current user to bounds.
-  if (user_marker) bounds.extend(user_marker.getPosition());
 
   results.forEach(function (facility, index) {
     const address = facility.facility_address + '<br/>' +
@@ -187,19 +182,12 @@ function render_results(results) {
     record.click(function () {
       // Zoom to location.
       map.setCenter(marker.getPosition());
-      marker.setZIndex(highest_z_index++);
       active_marker = marker;
     })
-    bounds.extend(marker.getPosition());
-    all_markers.push(marker);
+    marker_clusterer.addMarker(marker);
   });
 
-  map.fitBounds(bounds);
-
-  var options = {
-      imagePath: '/static/img/m'
-  };
-  new MarkerClusterer(map, all_markers, options);
+  marker_clusterer.fitMapToMarkers();
 }
 
 function is_valid_zip(zip) {
@@ -259,7 +247,7 @@ function run_location_search(starting_location) {
           icon: USER_MARKER_ICON
       });
 
-      const info_content = "<b>Home:</b> " + user_address;
+      const info_content = "<b>Home:</b> " + location_text;
       add_info_to_marker(user_marker, info_content);
 
       map.setZoom(13);
