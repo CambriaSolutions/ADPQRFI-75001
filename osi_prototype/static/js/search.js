@@ -5,6 +5,7 @@ const FACILITY_TYPES = [
   "FOSTER FAMILY AGENCY",
   "FOSTER FAMILY AGENCY SUB"
 ];
+const SEARCH_RADII = [5, 10, 15, 20, 50];
 const LABELS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const DEFAULT_ICON = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
 const SELECTED_ICON = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
@@ -14,12 +15,18 @@ var map = null;
 var geocoder = null;
 var user_marker = null;
 var active_marker = null;
+var circle = null;
 var all_markers = [];
 var highest_z_index = 0;
 
 function get_search_type() {
   const type_id = parseInt($('#facility-type option:selected').data('field'));
   return FACILITY_TYPES[type_id];
+}
+
+function get_search_radius() {
+  const radius_id = parseInt($('#facility-radius option:selected').data('field'));
+  return SEARCH_RADII[radius_id];
 }
 
 function get_search_location() {
@@ -50,6 +57,16 @@ function init_map() {
 
   geocoder = new google.maps.Geocoder();
 
+  circle = new google.maps.Circle({
+    strokeColor: '#F0573E',
+    strokeOpacity: 0.75,
+    strokeWeight: 2,
+    fillColor: '#F0573E',
+    fillOpacity: 0.05,
+    map: map,
+    radius: 0
+  })
+
   if (user_address == null) return;
   run_location_search(user_address);
 }
@@ -76,27 +93,26 @@ function search_facilities_by_zip(facility_zip, facility_type, cb) {
   });
 }
 
+function distance(p1, p2) {
+  const s1 = p1[0] - p2[0];
+  const s2 = p1[1] - p2[1];
+  return Math.sqrt((s1 * s1) + (s2 * s2));
+}
+
 function search_facilities_within_radius(location, facility_type, radius_mi, cb) {
   // $where=within_circle(location, 34.09, -117.67, 1000)
   const radius_m = radius_mi * 1609.34;  // 5 mi in m
-
+  // [Lng, Lat] order to match HHS search results.
+  const center = [location.lng(), location.lat()];
   // Draw circle around location.
-  const circle = new google.maps.Circle({
-    strokeColor: '#F0573E',
-    strokeOpacity: 0.75,
-    strokeWeight: 2,
-    fillColor: '#F0573E',
-    fillOpacity: 0.05,
-    map: map,
-    center: location,
-    radius: radius_m
-  });
+  circle.setCenter(location);
+  circle.setRadius(radius_m);
 
   var params = {
     //'$limit': 10,
     '$where': 'within_circle(location,' +
-              location.lat().toString() + ',' +
-              location.lng().toString() + ',' +
+              center[1].toString() + ',' +
+              center[0].toString() + ',' +
               radius_m + ')',
     facility_type: facility_type,
   };
@@ -106,6 +122,11 @@ function search_facilities_within_radius(location, facility_type, radius_mi, cb)
   $.ajax(url, {
     dataType: 'json'
   }).done(function (results) {
+    // Sort by increasing distance from center.
+    results.sort(function (p1, p2) {
+      return distance(p1.location.coordinates, center) -
+             distance(p2.location.coordinates, center);
+    });
     cb(results);
   });
 }
@@ -174,6 +195,11 @@ function render_results(results) {
   });
 
   map.fitBounds(bounds);
+
+  var options = {
+      imagePath: '/static/img/m'
+  };
+  new MarkerClusterer(map, all_markers, options);
 }
 
 function is_valid_zip(zip) {
@@ -239,7 +265,10 @@ function run_location_search(starting_location) {
       map.setZoom(13);
 
       // Set search to location in result, if found.
-      search_facilities_within_radius(result.geometry.location, get_search_type(), 5, render_results);
+      search_facilities_within_radius(result.geometry.location,
+                                      get_search_type(),
+                                      get_search_radius(),
+                                      render_results);
     } else {
       console.log("Geocode was not successful for the following reason: " + status);
     }
