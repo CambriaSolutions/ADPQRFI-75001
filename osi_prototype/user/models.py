@@ -4,7 +4,6 @@ import datetime as dt
 
 from flask import url_for
 from flask_login import UserMixin
-from sqlalchemy.dialects.oracle import BLOB
 
 from osi_prototype.database import Column, Model, SurrogatePK, db, reference_col, relationship
 from osi_prototype.extensions import bcrypt
@@ -46,7 +45,7 @@ class User(UserMixin, SurrogatePK, Model):
     license_number = Column(db.String(32), nullable=True)
     phone_number = Column(db.String(32), nullable=True)
     profile_photo = Column(db.String(64), nullable=True)
-    profile_image = Column(BLOB)
+    profile_image = Column(db.BLOB())
 
     num_adults = Column(db.SmallInteger(), nullable=True, default=1)
     num_children = Column(db.SmallInteger(), nullable=True, default=0)
