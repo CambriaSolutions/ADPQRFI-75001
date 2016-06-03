@@ -18,7 +18,7 @@
           Parent
         {% endif %}
       </h3>
-      <img class="img-circle user-profile-photo" src="{{ to_user.get_profile_photo(150) }}">
+      <img class="img-circle user-profile-photo" src="{{ to_user.get_profile_photo_url(150) }}">
       <h5>{{ to_user.full_name }}</h5>
       <ul class="list-group">
         <li class="list-group-item"><strong>Phone:</strong> {{ to_user.phone_number }}</li>
@@ -43,7 +43,7 @@
       <div class="media">
         {% if current_user.id == message.from_user_id %}
           <div class="media-left">
-            <img class="img-circle media-object user-message-photo" src="{{ current_user.get_profile_photo(70) }}">
+            <img class="img-circle media-object user-message-photo" src="{{ current_user.get_profile_photo_url(70) }}">
           </div>
           <div class="media-body">
             <p class="media-heading">{{ message.body }}</p>
@@ -61,7 +61,7 @@
             <em>{{ message.created_at | utc_to_pst | format_dt }}</em>
           </div>
           <div class="media-right">
-            <img class="img-circle media-object user-message-photo" src="{{ to_user.get_profile_photo(70) }}">
+            <img class="img-circle media-object user-message-photo" src="{{ to_user.get_profile_photo_url(70) }}">
           </div>
         {% endif %}
       </div>

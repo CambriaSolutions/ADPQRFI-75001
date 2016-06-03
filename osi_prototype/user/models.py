@@ -2,9 +2,10 @@
 """User models."""
 import datetime as dt
 
+from flask import url_for
 from flask_login import UserMixin
+from sqlalchemy.dialects.oracle import BLOB
 
-from osi_prototype.assets import uploads
 from osi_prototype.database import Column, Model, SurrogatePK, db, reference_col, relationship
 from osi_prototype.extensions import bcrypt
 
@@ -45,6 +46,7 @@ class User(UserMixin, SurrogatePK, Model):
     license_number = Column(db.String(32), nullable=True)
     phone_number = Column(db.String(32), nullable=True)
     profile_photo = Column(db.String(64), nullable=True)
+    profile_image = Column(BLOB)
 
     num_adults = Column(db.SmallInteger(), nullable=True, default=1)
     num_children = Column(db.SmallInteger(), nullable=True, default=0)
@@ -80,17 +82,17 @@ class User(UserMixin, SurrogatePK, Model):
         """Full user name."""
         return '{0} {1}'.format(self.first_name, self.last_name)
 
-    def get_profile_photo(self, placeholder_size=100):
-        """Get a profile photo or return a placeholder image."""
+    def get_profile_photo_url(self, placeholder_size=100):
+        """Get a profile photo url or return a placeholder image."""
         if self.profile_photo:
-            return uploads.url(self.profile_photo)
+            return url_for('user.profile_photo', username=self.username,
+                           filename=self.profile_photo)
         else:
             return 'http://placehold.it/{}'.format(placeholder_size)
 
-    def set_profile_photo(self, photo):
+    def set_profile_photo(self, name, photo):
         """Set a profile photo given a file."""
-        filename = uploads.save(photo)
-        self.update(profile_photo=filename)
+        self.update(profile_photo=name, profile_image=photo)
 
     def messages_between(self, other, limit=10):
         """Return partial query for messages between this user and another user."""

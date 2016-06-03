@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """User views."""
+import io
 import json
 
-from flask import Blueprint, flash, redirect, render_template, request, url_for
+from flask import Blueprint, abort, flash, redirect, render_template, request, send_file, url_for
 from flask_login import current_user, login_required
 
 from osi_prototype.database import db
@@ -86,13 +87,26 @@ def message_thread(to_username):
     return rendered
 
 
-@blueprint.route('/upload/', methods=['POST'])
+@blueprint.route('/upload', methods=['POST'])
 @login_required
 def upload():
     """Upload a photo to the upload set."""
     if 'photo' in request.files:
-        current_user.set_profile_photo(request.files['photo'])
+        photo = request.files['photo']
+        current_user.set_profile_photo(photo.filename, photo.read())
         flash('Photo saved.', 'success')
     else:
         flash('Please provide a photo!', 'error')
     return redirect(url_for('.profile'))
+
+
+@blueprint.route('/photo/<username>/<filename>', methods=['GET'])
+@login_required
+def profile_photo(username, filename):
+    """Serve the profile photo for this user."""
+    user = User.get_by_username(username, show_404=True)
+
+    if filename == user.profile_photo:
+        return send_file(io.BytesIO(user.profile_image))
+    else:
+        return abort(404)
