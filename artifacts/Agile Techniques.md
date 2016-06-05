@@ -5,12 +5,14 @@ AGILE TECHNIQUES USED
 3. Sprint planning
 4. Sprint review
 5. Sprint retrospectives
-6. Human-centered design
-7. Personas
-8. Wireframes
-9. Product Owner/Manager
-10. Agile coaching
-11. Cross-functional team
-12. Iterations
-13. User interviews
-14. Sprint backlog
+6. Daily scrum
+7. Human-centered design
+8. Personas
+9. Wireframes
+10. Product Owner/Manager
+11. Agile coaching
+12. Cross-functional team
+13. Iterations
+14. User interviews
+15. Sprint backlog
+16. Agile testing
