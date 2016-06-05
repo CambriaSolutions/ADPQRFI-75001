@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Public section, including homepage and signup."""
 from flask import Blueprint, flash, redirect, render_template, request, url_for
-from flask_login import login_required, login_user, logout_user
+from flask_login import current_user, login_required, login_user, logout_user
 
 from osi_prototype.extensions import login_manager
 from osi_prototype.public.forms import LoginForm
@@ -33,7 +33,13 @@ def login():
     if request.method == 'POST':
         if form.validate_on_submit():
             login_user(form.user)
-            redirect_url = request.args.get('next') or url_for('user.messages')
+            if request.args.get('next'):
+                redirect_url = request.args.get('next')
+            elif current_user.user_type == 'parent':
+                redirect_url = url_for('user.profile')
+            else:
+                redirect_url = url_for('user.messages')
+
             return redirect(redirect_url)
         else:
             flash_errors(form)

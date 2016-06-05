@@ -27,7 +27,7 @@
         <li><a href="{{ url_for('public.home') }}">Home</a></li>
       {% endif %}
       <li><a href="{{ url_for('public.about') }}">About</a></li>
-      <li><a href="{{ url_for('public.search') }}">Search</a></li>
+      <li><a href="{{ url_for('public.search') }}">Search Facilities</a></li>
     {% if current_user and current_user.is_authenticated %}
       <li><a href="{{ url_for('user.profile') }}">Profile</a></li>
       <li><a href="{{ url_for('user.messages') }}">Inbox

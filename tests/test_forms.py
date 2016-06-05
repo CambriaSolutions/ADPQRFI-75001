@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """Test forms."""
 
+from werkzeug.datastructures import ImmutableMultiDict as IMultidict
+
 from osi_prototype.public.forms import LoginForm
 from osi_prototype.user.forms import EditForm, MessageForm, RegisterForm
 
@@ -101,6 +103,17 @@ class TestEditForm:
         """Successful even with no edits."""
         form = EditForm()
         assert form.validate() is True
+
+    def test_validate_bad_numbers(self, db):
+        """Unsuccessful with bad numbers."""
+        data = IMultidict({'num_adults': -5,
+                           'num_children': 500,
+                           'num_capacity': -1})
+        form = EditForm(data)
+        assert form.validate() is False
+        assert len(form.num_adults.errors) > 0
+        assert len(form.num_children.errors) > 0
+        assert len(form.num_children.errors) > 0
 
 
 class TestMessageForm:

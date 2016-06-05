@@ -65,3 +65,14 @@ class TestUser:
         user.roles.append(role)
         user.save()
         assert role in user.roles
+
+    def test_profile_image_defaults_to_placeholder(self):
+        """User image defaults to placeholder when missing."""
+        user = UserFactory(first_name='Foo', last_name='Bar')
+        assert 'placehold' in user.get_profile_photo_url()
+
+    def test_profile_image_present(self):
+        """User image returned properly after upload."""
+        user = UserFactory(first_name='Foo', last_name='Bar')
+        user.set_profile_photo('img.png', b'...')
+        assert 'img.png' in user.get_profile_photo_url()
