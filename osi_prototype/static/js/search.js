@@ -5,7 +5,6 @@ const FACILITY_TYPES = [
   "FOSTER FAMILY AGENCY",
   "FOSTER FAMILY AGENCY SUB"
 ];
-const SEARCH_RADII = [0, 5, 10, 15, 20, 50];
 const LABELS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const DEFAULT_ICON = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png';
 const SELECTED_ICON = 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
@@ -15,17 +14,12 @@ var map = null;
 var geocoder = null;
 var user_marker = null;
 var active_marker = null;
-var info_window = null;
-var circle = null;
+var all_markers = [];
+var highest_z_index = 0;
 
 function get_search_type() {
   const type_id = parseInt($('#facility-type option:selected').data('field'));
   return FACILITY_TYPES[type_id];
-}
-
-function get_search_radius() {
-  const radius_id = parseInt($('#facility-radius option:selected').data('field'));
-  return SEARCH_RADII[radius_id];
 }
 
 function get_search_location() {
@@ -54,27 +48,17 @@ function init_map() {
     zoom: 7,
   });
 
-  info_window = new google.maps.InfoWindow();
-
-  var options = {
-      imagePath: '/static/img/m'
-  };
-  marker_clusterer = new MarkerClusterer(map, [], options);
-
   geocoder = new google.maps.Geocoder();
-
-  circle = new google.maps.Circle({
-    strokeColor: '#F0573E',
-    strokeOpacity: 0.75,
-    strokeWeight: 2,
-    fillColor: '#F0573E',
-    fillOpacity: 0.05,
-    map: map,
-    radius: 0
-  })
 
   if (user_address == null) return;
   run_location_search(user_address);
+}
+
+function add_info_to_marker(marker, content) {
+  var infowindow = new google.maps.InfoWindow({content: content});
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
 }
 
 function search_facilities_by_zip(facility_zip, facility_type, cb) {
@@ -82,38 +66,37 @@ function search_facilities_by_zip(facility_zip, facility_type, cb) {
     facility_type: facility_type,
     facility_zip: facility_zip,
   };
-  if (facility_type == FACILITY_TYPES[0]) delete params.facility_type;
+  if (facility_type == "<all>") delete params.facility_type;
   const url = CHHS_API_URL + "?" + $.param(params);
-  console.log(url)
+
   $.ajax(url, {
     dataType: 'json'
   }).done(function (results) {
-    console.log(results)
     cb(results);
   });
-}
-
-function distance(p1, p2) {
-  const s1 = p1[0] - p2[0];
-  const s2 = p1[1] - p2[1];
-  return Math.sqrt((s1 * s1) + (s2 * s2));
 }
 
 function search_facilities_within_radius(location, facility_type, radius_mi, cb) {
   // $where=within_circle(location, 34.09, -117.67, 1000)
   const radius_m = radius_mi * 1609.34;  // 5 mi in m
-  // [Lng, Lat] order to match HHS search results.
-  const center = [location.lng(), location.lat()];
+
   // Draw circle around location.
-  circle.setMap(map);
-  circle.setCenter(location);
-  circle.setRadius(radius_m);
+  const circle = new google.maps.Circle({
+    strokeColor: '#F0573E',
+    strokeOpacity: 0.75,
+    strokeWeight: 2,
+    fillColor: '#F0573E',
+    fillOpacity: 0.05,
+    map: map,
+    center: location,
+    radius: radius_m
+  });
 
   var params = {
     //'$limit': 10,
     '$where': 'within_circle(location,' +
-              center[1].toString() + ',' +
-              center[0].toString() + ',' +
+              location.lat().toString() + ',' +
+              location.lng().toString() + ',' +
               radius_m + ')',
     facility_type: facility_type,
   };
@@ -123,42 +106,27 @@ function search_facilities_within_radius(location, facility_type, radius_mi, cb)
   $.ajax(url, {
     dataType: 'json'
   }).done(function (results) {
-    // Sort by increasing distance from center.
-    results.sort(function (p1, p2) {
-      return distance(p1.location.coordinates, center) -
-             distance(p2.location.coordinates, center);
-    });
     cb(results);
   });
 }
 
 function clear_results() {
   if (user_marker) user_marker.setMap(null);
-  marker_clusterer.clearMarkers();
-  circle.setMap(null);
-
-  $('#num-results').text(0);
-  $('#results-list').html('<p>No results to show.</p>');
-}
-
-function show_info_for_marker(marker, info) {
-  function _show_info() {
-    info_window.close();
-    info_window.setContent(info);
-    info_window.setPosition(marker.getPosition());
-    info_window.open(map);
-    map.setCenter(marker.getPosition());
-  }
-  return _show_info;
+  $('#results-list').empty();
+  all_markers.forEach(function (marker) {
+    marker.setMap(null);
+  });
+  all_markers = [];
+  highest_z_index = 0;
 }
 
 function render_results(results) {
   $('#num-results').text(results.length);
+  highest_z_index = results.length;
 
   if (results.length == 0) {
+    $('#results-list').html('<p>No results to show.</p>');
     return;
-  } else {
-    $('#results-list').empty();
   }
 
   var bounds = new google.maps.LatLngBounds();
@@ -177,8 +145,7 @@ function render_results(results) {
         $('<em class="text-primary">').text(LABELS[index % LABELS.length] + '. '),
         $('<strong>').text(facility.facility_name),
         $('<div>').html(address),  // CAREFUL HERE, potentially unsafe.
-        $('<div>').text(facility.facility_telephone_number),
-        $('<div>').text('Capacity: ' + facility.facility_capacity)
+        $('<div>').text(facility.facility_telephone_number)
     )).appendTo('#results-list');
 
     // Create a marker and set its position.
@@ -194,13 +161,15 @@ function render_results(results) {
       label: LABELS[index % LABELS.length],
       zIndex: index
     });
-
-    const show_info = show_info_for_marker(marker, facility.facility_name);
-    marker.addListener('click', show_info);
-    record.click(show_info);
-
-    marker_clusterer.addMarker(marker);
+    add_info_to_marker(marker, facility.facility_name);
+    record.click(function () {
+      // Zoom to location.
+      map.setCenter(marker.getPosition());
+      marker.setZIndex(highest_z_index++);
+      active_marker = marker;
+    })
     bounds.extend(marker.getPosition());
+    all_markers.push(marker);
   });
 
   map.fitBounds(bounds);
@@ -226,6 +195,21 @@ function validate_zip(group_id, validator) {
   }
 }
 
+function run_zip_search(starting_zip) {
+  if (starting_zip) {
+    $('#zip-group input').val(starting_zip);
+  }
+
+  const facility_zip = validate_zip('#zip-group', is_valid_zip);
+  if (!facility_zip) return;
+
+  const type_id = parseInt($('#facility-type option:selected').data('field'));
+  const facility_type = FACILITY_TYPES[type_id];
+
+  console.log("Running search for: ", facility_zip)
+  search_facilities_by_zip(facility_zip, facility_type, render_results);
+}
+
 
 function run_location_search(starting_location) {
   clear_results();
@@ -235,9 +219,8 @@ function run_location_search(starting_location) {
   }
 
   const location_text = get_search_location();
-  if (!location_text) return;
-
   console.log("Running geocoding for: ", location_text);
+
   geocoder.geocode( { 'address': location_text }, function(results, status) {
     if (status == google.maps.GeocoderStatus.OK) {
       const result = results[0];
@@ -249,33 +232,20 @@ function run_location_search(starting_location) {
           icon: USER_MARKER_ICON
       });
 
-      const info_content = "<b>Home:</b> " + location_text;
-      const show_info = show_info_for_marker(user_marker, info_content);
-      user_marker.addListener('click', show_info);
+      const info_content = "<b>Home:</b> " + user_address;
+      add_info_to_marker(user_marker, info_content);
 
       map.setZoom(13);
 
       // Set search to location in result, if found.
-      const search_radius = get_search_radius();
-
-      if (search_radius == 0) {
-        // Run exact zipcode search.
-        const facility_zip = find_zip_in(result);
-        if (facility_zip) {
-          console.log("Searching in zip:", facility_zip);
-          search_facilities_by_zip(facility_zip, get_search_type(), render_results);
-        } else {
-          console.log("Couldn't resolve location's zipcode!");
-        }
-      } else {
-        console.log("Searching within", search_radius, "mile radius");
-        search_facilities_within_radius(result.geometry.location,
-                                        get_search_type(),
-                                        search_radius,
-                                        render_results);
-      }
+      search_facilities_within_radius(result.geometry.location, get_search_type(), 5, render_results);
     } else {
       console.log("Geocode was not successful for the following reason: " + status);
     }
   });
 }
+
+
+$(document).ready(function() {
+  //$('#run-search').click(function() { run_location_search(); });
+});
