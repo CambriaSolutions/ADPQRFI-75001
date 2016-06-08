@@ -1,5 +1,5 @@
 ##Assumption: 
-We defined the parent to be a foster parent and not a biological parent
+In a Q&A published by OSI on 6/6, it was clarified that parents of foster kids are biological parents. However, we had assumed parents of foster kids as foster parents. Hence, our user stories are written from that perspective.
 
 User Story #1
 -------------
