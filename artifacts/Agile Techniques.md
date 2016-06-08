@@ -14,5 +14,6 @@ AGILE TECHNIQUES USED
 12. Cross-functional team
 13. Iterations
 14. User interviews
-15. Sprint backlog
-16. Agile testing
+15. Product backlog
+16. Sprint backlog
+16. Agile testing 
