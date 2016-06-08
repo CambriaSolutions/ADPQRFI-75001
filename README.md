@@ -1,6 +1,11 @@
 # ADPQRFI-75001
 OSI ADPQ RFI #75001 [![Build Status](https://travis-ci.com/CambriaSolutions/ADPQRFI-75001.svg?token=i1JMA1supXo23nJUmgBo&branch=master)](https://travis-ci.com/CambriaSolutions/ADPQRFI-75001)
 
+##U.S. Digital Services Playbook
+Here's how we incorporated the 13 plays:
+https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/US%20Digital%20Services%20Playbook%20checklist%20final.docx
+
+
 ## Technology Stack
 * [Flask](http://flask.pocoo.org/) - Python web framework
 * [SQLite](https://www.sqlite.org/) - Development Database
