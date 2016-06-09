@@ -53,7 +53,7 @@ We developed our style guide keeping in mind its significant impact on the way u
 
 (f)
 
-Our Usability testing focused on understanding the users, their needs, and what they value. Our representative users, who were located in different geographical areas, became our testers and utilized a variety of devices and platforms. Based on their feedback, we noted enhancements as issues for every sprint, and used the information collected to evaluate the usability of the application, and recommended improvements with each successive sprint. The users began testing at the end of sprint 1 and continued throughout all subsequent sprints. *[[Our Sprints]](https://github.com/CambriaSolutions/ADPQRFI-75001/milestones?state=closed)* *[[Issues]](https://github.com/CambriaSolutions/ADPQRFI-75001/issues?q=is%3Aissue+is%3Aclosed)* *[[Usability Testing]](/artifacts/Usability%20Testing.pdf)*
+Our Usability testing focused on understanding the users, their needs, and what they value. Our representative users, who were located in different geographical areas, became our testers and utilized a variety of devices and platforms. Based on their feedback, we noted enhancements as issues for every sprint, and used the information collected to evaluate the usability of the application, and recommended improvements with each successive sprint. The users began testing at the end of sprint 1 and continued throughout all subsequent sprints. *[[Our Sprints]](https://github.com/CambriaSolutions/ADPQRFI-75001/milestones?state=closed)* *[[Issues]](https://github.com/CambriaSolutions/ADPQRFI-75001/issues?q=is%3Aissue+is%3Aclosed)* *[[Usability Testing]](/artifacts/Usability%20Testing.pdf)* *[[User Feedback]](/artifacts/User%20Feedback.pdf)*
 
 (g)
 
