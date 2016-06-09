@@ -10,15 +10,13 @@ Cambria builds custom-tailored solutions using ingenuity and a distinctly humani
 
 # Our Human-Centered Approach 
 
-The required components: 1) establish and manage foster parent profile 2) view children's residential facilities in parent's zip code 3) and communicate with the case worker via private inbox. 
-
-We reached beyond the basics to create a user experience that was intuitive to the needs of actual foster parents and case workers and included user relevant features for every page. We started with discovery and conducted usability testing continuously with each iteration. We also researched related resources and government reports. With this collective knowledge, we developed personas to further define and personalize the prototype's core characteristics. 
+We created a user experience that was intuitive to the needs of actual foster parents and case workers and included user relevant features for every page. We started with discovery and conducted usability testing continuously with each iteration. We also researched related resources and government reports. With this collective knowledge, we developed personas to further define and personalize the prototype's core characteristics. 
 
 # Agile in Action 
 
 Our cross-functional team met face-to-face in conference rooms, spent hours in break out meetings, and collaborated daily in scrums to develop a prototype that exemplifies not only our technical and agile skills but the human-centered design principles. 
 
-To get to the goal of a working prototype, we started developing our first user story within a couple of days. We learned a lot in the first sprint and never stopped learning, iterating, and adapting until we were done with our sixth sprint. We tested each core feature and made adjustments based on raised issues and feedback from our regular sprint retrospectives. From fixing bugs and issues to tweaking wireframes and visual design to adjusting the software stack, every aspect of each lifecycle was open to adjustments to ensure the prototype functioned and responded the way our users needed it to.   
+We started developing our first user story within a couple of days. We learned a lot in the first sprint and never stopped learning, iterating, and adapting. We tested each core feature and made adjustments based on raised issues and feedback from our regular sprint retrospectives. From fixing bugs and issues to tweaking wireframes and visual design to adjusting the software stack, every aspect of each lifecycle was open to adjustments to ensure the prototype functioned and responded the way our users needed it to.   
 
 # U.S. Digital Services Playbook
 We followed the Digital Services Playbook and created a *[document](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/US%20Digital%20Serices%20Playbook%20Checklist.md)* describing how we used the plays.
@@ -43,7 +41,7 @@ In developing this prototype, we utilized several human-centered design techniqu
 
 (e)
 
-We developed our style guide keeping in mind its significant impact on the way users perceive and feel about their interactive experience and the brand itself. Because all the information is visually-presented, finding the right look and feel was essential. We prioritized the following objectives: the use of inspirational pictures, friendly and empathetic tone, persona-based branding, being intuitive and relevant, conversational nature, and presentation of the Cambria brand. *[[Style Guide]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Style%20Guide.pdf)* *[[Style Guide Process]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Human-Centered-Design-Artifacts/Style-Guide-Process/Style%20Guide%20%Process.pdf)*
+We developed our style guide keeping in mind its significant impact on the way users perceive and feel about their interactive experience and the brand itself. We prioritized the following objectives: the use of inspirational pictures, friendly and empathetic tone, persona-based branding, being intuitive and relevant, conversational nature, and presentation of the Cambria brand. *[[Style Guide]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Style%20Guide.pdf)* *[[Style Guide Process]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Human-Centered-Design-Artifacts/Style-Guide-Process/Style%20Guide%20%Process.pdf)*
 
 (f)
 
@@ -51,7 +49,7 @@ Our Usability testing focused on understanding the users, their needs, and what 
 
 (g)
 
-We used an iterative approach, each sprint informing the subsequent. Our team conducted six sprints corresponding with our user stories. Each sprint cycle began with a sprint planning meeting and ended with a sprint review and sprint retrospective meetings. We ran two-day sprints and held daily scrums to review the last 24 hours, the next 24 hours, and any impediments that the team might have had. The team started slow but soon picked up velocity and finished most of the development early with the last couple of sprints planned for addressing prioritized enhancements and issues. *[[Our Agile Process]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Agile%20Process.pdf)* *[[Our Agile Techniques]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Agile%Techniques.pdf)*
+We conducted six sprints, each sprint informing the subsequent. Each sprint cycle began with a sprint planning meeting and ended with a sprint review and sprint retrospective meetings. We ran two-day sprints and held daily scrums to review the last 24 hours, the next 24 hours, and any impediments that the team might have had. The team started slow but soon picked up velocity and finished most of the development early with the last couple of sprints planned for addressing prioritized enhancements and issues. *[[Our Agile Process]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Agile%20Process.pdf)* *[[Our Agile Techniques]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Agile%Techniques.pdf)*
 
 (h)
 
@@ -63,7 +61,7 @@ We built our solution on a foundation of modern open-source tools and technologi
 
 (j)
 
-We used Heroku as our production PaaS provider because it allows us to focus on development while conveniently configuring and managing infrastructure needs. It also minimizes effort without compromising control of and visibility into what's going on. It uses integrated deployments with TravisCI and our GitHub repository for continuous integration and monitoring. *[[Our PaaS Platform]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/PaaS%20Platform.pdf)*
+We used Heroku as our production PaaS provider. *[[Our PaaS Platform]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/PaaS%20Platform.pdf)*
 
 (k)
 
@@ -79,11 +77,11 @@ Git allowed us to share and collaborate on code and assets, while GitHub hosts o
 
 (n)
 
-We used Librato for continuous monitoring because it is a complete solution that monitors and analyzes the metrics that impact the application at every level of the stack. It provides everything needed to visualize, analyze, and actively alert on critical metrics. We integrated Librato with Heroku to provide detailed information about the application’s performance, per-dyno system resources, and our application database. We added LogEntries to provide real-time logging, aggregated live-tail search and context views, and the ability to search events as they occur. *[[Continuous Monitoring]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Continuous%20Monitoring.pdf)* 
+We used Librato for continuous monitoring because it is a complete solution that monitors and analyzes the metrics that impact the application at every level of the stack. We integrated Librato with Heroku to provide detailed information about the application’s performance, per-dyno system resources, and our application database. We added LogEntries to provide real-time logging, aggregated live-tail search and context views, and the ability to search events as they occur. *[[Continuous Monitoring]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Continuous%20Monitoring.pdf)* 
 
 (o) 
 
-We utilized Heroku's "Dynos” for containerization.  Dynos containerization is a virtualization technology that allows multiple isolated operating system containers to be run on a shared host. The dyno manager keeps dynos running automatically. *[[Web Dyno Container]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Web%20Dyno%20Container.pdf)*  
+We utilized Heroku's "Dynos” for containerization, a virtualization technology that allows multiple isolated operating system containers to be run on a shared host. *[[Web Dyno Container]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Web%20Dyno%20Container.pdf)*  
 
 (p)
 
