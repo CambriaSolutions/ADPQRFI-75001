@@ -6,11 +6,9 @@
 # The Cambria Way
 Cambria builds custom-tailored solutions using ingenuity and a distinctly humanized approach. Something we like to call HumanGenuity®. What better way for us to demonstrate how we put this into practice than by engaging in a challenge to develop a human-centered prototype while displaying our agile approach! 
 
-# Our Human-Centered Approach 
+# Our Agile Human-Centered Approach 
 
 We created a user experience that was intuitive to the needs of actual foster parents and case workers and included user relevant features for every page. We started with discovery and conducted usability testing continuously with each iteration. We also researched related resources and government reports. With this collective knowledge, we developed personas to further define and personalize the prototype's core characteristics. 
-
-# Agile in Action 
 
 Our cross-functional team met face-to-face in conference rooms, spent hours in break out meetings, and collaborated daily in scrums to develop a prototype that exemplifies not only our technical and agile skills but the human-centered design principles. 
 
@@ -55,7 +53,7 @@ This prototype works on multiple devices including desktops, laptops, android an
 
 (i)
 
-We built our solution on a foundation of modern open-source tools and technologies that facilitate collaboration between members of a cross-disciplinary team, as well as rapid prototyping and iteration without compromising the stability of the end-product. We used several open source technologies such as Flask, SQLite, PostgreSQL, Bootstrap, Pytest, and TravisCI. *[[Our Technology Stack]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Technology%20Stack.md)*
+We built our solution using modern open-source tools that facilitate collaboration between members of a cross-disciplinary team, as well as rapid prototyping and iteration. We used several open source technologies such as Flask, SQLite, PostgreSQL, Bootstrap, Pytest, and TravisCI. *[[Our Technology Stack]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Technology%20Stack.md)*
 
 (j)
 
@@ -75,7 +73,7 @@ Git allowed us to share and collaborate on code and assets, while GitHub hosts o
 
 (n)
 
-We used Librato for continuous monitoring because it is a complete solution that monitors and analyzes the metrics that impact the application at every level of the stack. We integrated Librato with Heroku to provide detailed information about the application’s performance, per-dyno system resources, and our application database. We added LogEntries to provide real-time logging, aggregated live-tail search and context views, and the ability to search events as they occur. *[[Continuous Monitoring]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Continuous%20Monitoring.pdf)* 
+We used Librato for continuous monitoring, integrating it with Heroku to provide detailed information about the application’s performance and system resources. We added LogEntries to provide real-time logging, aggregated live-tail search and context views, and the ability to search events as they occur. *[[Continuous Monitoring]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Continuous%20Monitoring.pdf)* 
 
 (o) 
 
