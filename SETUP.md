@@ -63,12 +63,6 @@ python properly:
     workon proto
 
 
-Deployment
-----------
-
-In your production environment, make sure the ``OSI_PROTOTYPE_ENV`` environment variable is set to ``"prod"``.
-
-
 Shell
 -----
 
@@ -105,3 +99,13 @@ This will generate a new migration script. Then run:
 To apply the migration.
 
 For a full migration command reference, run ``python manage.py db --help``.
+
+
+Deployment
+----------
+
+After committing your changes, simply push them to Github and Travis will re-run the tests in a sandbox and deploy to Heroku if 
+successful:
+
+    git commit -m "Some new changes"
+    git push origin master
