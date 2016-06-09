@@ -12,3 +12,4 @@
 * [Flake8](https://flake8.readthedocs.io/en/latest/) - Code health
 * [Pytest](http://pytest.org/latest/) - Unit and functional testing framework
 * [Webtest](http://docs.pylonsproject.org/projects/webtest/en/latest/) - Frontend testing 
+* [Cloud9](https://c9.io/) - Collaborative web-based IDE and development host
