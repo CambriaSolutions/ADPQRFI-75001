@@ -1,7 +1,7 @@
 # ADPQRFI-75001
 [Click here for our working prototype](https://adpqrfi-75001.herokuapp.com)
 
-[Quick Start Guide](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Quick%20Start%Guide.pdf)
+[Quick Start Guide](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Quick%20Start%20Guide.pdf)
 
 [![Build Status](https://travis-ci.com/CambriaSolutions/ADPQRFI-75001.svg?token=i1JMA1supXo23nJUmgBo&branch=master)](https://travis-ci.com/CambriaSolutions/ADPQRFI-75001)
 
