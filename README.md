@@ -3,8 +3,6 @@
 
 [Quick Start Guide](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Quick%20Start%20Guide.pdf)
 
-[![Build Status](https://travis-ci.com/CambriaSolutions/ADPQRFI-75001.svg?token=i1JMA1supXo23nJUmgBo&branch=master)](https://travis-ci.com/CambriaSolutions/ADPQRFI-75001)
-
 # The Cambria Way
 Cambria builds custom-tailored solutions using ingenuity and a distinctly humanized approach. Something we like to call HumanGenuity®. What better way for us to demonstrate how we put this into practice than by engaging in a challenge to develop a human-centered prototype while displaying our agile approach! 
 
@@ -29,11 +27,11 @@ After we qualified the opportunity, our executive team met and assigned a leader
 
 (b)
 
-Dhiraj enlisted Anand, a Cambria executive, to help him crowdsource a multi-disciplinary team. Anand reached out to all Cambrianites via an email and they responded. The team assembled represented diverse backgrounds, including a few working remotely. Based on the experience, skills, and interests, the team quickly organized itself. Individuals aligned themselves to relevant roles. These roles included: Product Manager, Technical Architect, Interaction Designer/Usability Tester, Writer/Content Strategist, Visual Designer, Front-End Web Developer, Back-End Web Developer, DevOps Engineer, Delivery Manager, Agile Coach, Business Analysts, and Users. *[[Crowdsourcing]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Crowdsourcing.pdf)* *[[Our Team]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/The%20Team.pdf)*
+Dhiraj enlisted Anand, a Cambria executive, to help him crowdsource a multi-disciplinary team. Anand reached out to all Cambrianites via an email and they responded. The team assembled represented diverse backgrounds, including a few working remotely. Based on the experience, skills, and interests, the team quickly organized itself. Individuals aligned themselves to relevant roles. *[[Crowdsourcing]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Crowdsourcing.pdf)* *[[Our Team]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/The%20Team.pdf)*
 
 (c)
 
-We determined that the best product could only be developed and designed by knowing, empathizing with, and understanding the user. As such, we assigned four of our staff to take on the user roles. We invited them to our initial discovery/user interaction meeting and encouraged their contribution. One of our users is a subject matter expert who also has personal experience with the foster care system. Her knowledge and personal story became a valuable resource as we worked to identify the target audience and their most pertinent needs for this application. *[[User Engagement]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/User%20Engagement.pdf)* *[[Foster Parent Persona]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Persona%201-%20Monica.pdf)* *[[Case Worker Persona]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Persona%202-%20Charles.pdf)* *[[Our User Stories]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/User%20Stories.md)*
+We determined that the best product could only be developed and designed by knowing, empathizing with, and understanding the user. We had a discovery/user interaction meeting with four users. One of our users is a subject matter expert who also has personal experience with the foster care system. *[[User Engagement]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/User%20Engagement.pdf)* *[[Foster Parent Persona]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Persona%201-%20Monica.pdf)* *[[Case Worker Persona]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Persona%202-%20Charles.pdf)* *[[Our User Stories]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/User%20Stories.md)*
 
 (d)
 
