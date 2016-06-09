@@ -8,9 +8,9 @@ Cambria builds custom-tailored solutions using ingenuity and a distinctly humani
 
 # Our Agile Human-Centered Approach 
 
-We created a user experience that was intuitive to the needs of actual foster parents and case workers and included user relevant features for every page. We started with discovery and conducted usability testing continuously with each iteration. We also researched related resources and government reports. With this collective knowledge, we developed personas to further define and personalize the prototype's core characteristics. 
+We created a user experience that was intuitive to the needs of actual foster parents and case workers. We started with discovery that included interviews, research, and conducted usability testing continuously with each iteration. With this collective knowledge, we developed personas to further define and personalize the prototype's core characteristics. 
 
-Our cross-functional team met face-to-face in conference rooms, spent hours in break out meetings, and collaborated daily in scrums to develop a prototype that exemplifies not only our technical and agile skills but the human-centered design principles. 
+Our cross-functional team met face-to-face in conference rooms, had break out meetings, and collaborated daily to develop a prototype that exemplifies not only our technical and agile skills but the human-centered design principles. 
 
 We started developing our first user story within a couple of days. We learned a lot in the first sprint and never stopped learning, iterating, and adapting. We tested each core feature and made adjustments based on raised issues and feedback from our regular sprint retrospectives. From fixing bugs and issues to tweaking wireframes and visual design to adjusting the software stack, every aspect of each lifecycle was open to adjustments to ensure the prototype functioned and responded the way our users needed it to.   
 
@@ -21,15 +21,15 @@ We followed the Digital Services Playbook and created a *[document](https://gith
 
 (a)
 
-After we qualified the opportunity, our executive team met and assigned a leader, Dhiraj, to lead this initiative. Dhiraj was given the authority to lead the prototype development and to ensure that we deliver a quality product to OSI. Dhiraj is a certified Professional Scrum Master and he also served as the Agile Coach for the team. *[[Our Team]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/The%20Team.pdf)*
+Our executive team met and assigned Dhiraj and gave him authority to lead the prototype development and to ensure that we deliver a quality product to OSI. Dhiraj is a certified Professional Scrum Master and he also served as the Agile Coach for the team. *[[Our Team]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/The%20Team.pdf)*
 
 (b)
 
-Dhiraj enlisted Anand, a Cambria executive, to help him crowdsource a multi-disciplinary team. Anand reached out to all Cambrianites via an email and they responded. The team assembled represented diverse backgrounds, including a few working remotely. Based on the experience, skills, and interests, the team quickly organized itself. Individuals aligned themselves to relevant roles. *[[Crowdsourcing]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Crowdsourcing.pdf)* *[[Our Team]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/The%20Team.pdf)*
+Dhiraj enlisted Anand, a Cambria executive, to help him crowdsource a multi-disciplinary team. Anand reached out to all Cambrianites via an email and they responded. The team assembled represented diverse backgrounds. Based on the experience, skills, and interests, the team quickly organized itself. Individuals aligned themselves to relevant roles. *[[Crowdsourcing]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Crowdsourcing.pdf)* *[[Our Team]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/The%20Team.pdf)*
 
 (c)
 
-We determined that the best product could only be developed and designed by knowing, empathizing with, and understanding the user. We had a discovery/user interaction meeting with four users. One of our users is a subject matter expert who also has personal experience with the foster care system. *[[User Engagement]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/User%20Engagement.pdf)* *[[Foster Parent Persona]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Persona%201-%20Monica.pdf)* *[[Case Worker Persona]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Persona%202-%20Charles.pdf)* *[[Our User Stories]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/User%20Stories.md)*
+We determined that the best product could only be developed by knowing, empathizing with, and understanding the user. We had a discovery/user interaction meeting with four users. One of our users is a subject matter expert who also has personal experience with the foster care system. *[[User Engagement]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/User%20Engagement.pdf)* *[[Foster Parent Persona]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Persona%201-%20Monica.pdf)* *[[Case Worker Persona]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Persona%202-%20Charles.pdf)* *[[Our User Stories]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/User%20Stories.md)*
 
 (d)
 
