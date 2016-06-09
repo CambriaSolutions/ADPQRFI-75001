@@ -12,18 +12,18 @@ Cambria builds custom-tailored solutions using ingenuity and a distinctly humani
 
 The required components: 1) establish and manage foster parent profile 2) view children's residential facilities in parent's zip code 3) and communicate with the case worker via private inbox. 
 
-While the key prototype requirements were clear and straightforward, we reached beyond the basics to create a user experience that was intuitive to the needs of actual foster parents and case workers and included user relevant features for every page. We incorporated our users and SMEs from day one, starting with discovery, and conducted usability testing continuously with each iteration. We also researched related resources and government reports. With this collective knowledge, we developed personas to further define and personalize the prototype's core characteristics. 
+We reached beyond the basics to create a user experience that was intuitive to the needs of actual foster parents and case workers and included user relevant features for every page. We started with discovery and conducted usability testing continuously with each iteration. We also researched related resources and government reports. With this collective knowledge, we developed personas to further define and personalize the prototype's core characteristics. 
 
 # Agile in Action 
 
-Over the last three weeks, our cross-functional team met face-to-face in conference rooms, spent hours in break out meetings, and collaborated daily in scrums to develop a prototype that exemplifies not only our technical and agile skills but the human-centered design principles. 
+Our cross-functional team met face-to-face in conference rooms, spent hours in break out meetings, and collaborated daily in scrums to develop a prototype that exemplifies not only our technical and agile skills but the human-centered design principles. 
 
-To get to the goal of a working prototype in the time we were given, we started developing our first user story just as soon as our user group agreed on it. We learned a lot in the first sprint and never stopped learning, iterating, evolving, and adapting until we were done with our sixth sprint. We tested each core feature and made adjustments based on raised issues and feedback from our regular sprint retrospectives. From fixing bugs and issues to tweaking wireframes and visual design to adjusting the software stack, every aspect of each lifecycle was open to adjustments to ensure the prototype functioned and responded the way our users needed it to.   
+To get to the goal of a working prototype, we started developing our first user story within a couple of days. We learned a lot in the first sprint and never stopped learning, iterating, and adapting until we were done with our sixth sprint. We tested each core feature and made adjustments based on raised issues and feedback from our regular sprint retrospectives. From fixing bugs and issues to tweaking wireframes and visual design to adjusting the software stack, every aspect of each lifecycle was open to adjustments to ensure the prototype functioned and responded the way our users needed it to.   
 
 # U.S. Digital Services Playbook
-We followed the Digital Services Playbook and created a *[document](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/US%20Digital%20Serices%20Playbook%20Checklist.md)* describing our plays and our adherance to them.
+We followed the Digital Services Playbook and created a *[document](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/US%20Digital%20Serices%20Playbook%20Checklist.md)* describing how we used the plays.
 
-# Requirements for the Prototype
+# Prototype Requirements
 
 (a)
 
@@ -31,7 +31,7 @@ After we qualified the opportunity, our executive team met and assigned a leader
 
 (b)
 
-Dhiraj enlisted Anand, a Cambria executive, to help him crowdsource a multi-disciplinary team. Anand reached out to all Cambrianites via an email and they responded. The team assembled represented diverse backgrounds, including a few working remotely. We gathered developers, designers, business analysts, subject matter experts, and policy consultants. Based on the varied skills and interests, the team quickly organized itself. Individuals aligned themselves to relevant roles. These roles included: Product Manager, Technical Architect, Interaction Designer/Usability Tester, Writer/Content Strategist, Visual Designer, Front-End Web Developer, Back-End Web Developer, DevOps Engineer, Delivery Manager, Agile Coach, Business Analysts, and Users. *[[Crowdsourcing]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Crowdsourcing.pdf)* *[[Our Team]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/The%20Team.pdf)*
+Dhiraj enlisted Anand, a Cambria executive, to help him crowdsource a multi-disciplinary team. Anand reached out to all Cambrianites via an email and they responded. The team assembled represented diverse backgrounds, including a few working remotely. Based on the experience, skills, and interests, the team quickly organized itself. Individuals aligned themselves to relevant roles. These roles included: Product Manager, Technical Architect, Interaction Designer/Usability Tester, Writer/Content Strategist, Visual Designer, Front-End Web Developer, Back-End Web Developer, DevOps Engineer, Delivery Manager, Agile Coach, Business Analysts, and Users. *[[Crowdsourcing]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Crowdsourcing.pdf)* *[[Our Team]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/The%20Team.pdf)*
 
 (c)
 
@@ -47,7 +47,7 @@ We developed our style guide keeping in mind its significant impact on the way u
 
 (f)
 
-Our Usability testing focused on understanding the users, their needs, and what they value. Our representative users, who were located in different geographical areas, became our testers and utilized a variety of devices and platforms. Based on their feedback, we noted enhancements as issues for every sprint, and used the information collected to evaluate the usability of the application, and recommended improvements with each successive sprint. The users began testing at the end of sprint 1 and continued throughout all subsequent sprints. *[[Our Sprints]](https://github.com/CambriaSolutions/ADPQRFI-75001/milestones?state=closed)* *[[Issues]](https://github.com/CambriaSolutions/ADPQRFI-75001/issues?q=is%3Aissue+is%3Aclosed)* *[[Usability Testing]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Usability%20Testing.pdf)* *[[User Feedback]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/User%20Feedback.pdf)*
+Our Usability testing focused on understanding the users, their needs, and what they value. Our representative users became our testers. Utilizing a variety of devices, they tested across all sprints. Based on their feedback, we noted enhancements as issues for every sprint, and used the information collected to evaluate the usability of the application, and recommended improvements with each successive sprint. *[[Our Sprints]](https://github.com/CambriaSolutions/ADPQRFI-75001/milestones?state=closed)* *[[Issues]](https://github.com/CambriaSolutions/ADPQRFI-75001/issues?q=is%3Aissue+is%3Aclosed)* *[[Usability Testing]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Usability%20Testing.pdf)* *[[User Feedback]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/User%20Feedback.pdf)*
 
 (g)
 
@@ -59,15 +59,15 @@ This prototype works on multiple devices including desktops, laptops, android an
 
 (i)
 
-Modern software practices coincide with structured development methodology that is flexible enough to satisfy evolving needs. With this in mind, we built our solution on a foundation of modern open-source tools and technologies that facilitate collaboration between members of a cross-disciplinary team, as well as rapid prototyping and iteration without compromising the stability of the end-product. We used several open source technologies such as Flask, SQLite, PostgreSQL, Bootstrap, Pytest, and TravisCI. *[[Our Technology Stack]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Technology%20Stack.md)*
+We built our solution on a foundation of modern open-source tools and technologies that facilitate collaboration between members of a cross-disciplinary team, as well as rapid prototyping and iteration without compromising the stability of the end-product. We used several open source technologies such as Flask, SQLite, PostgreSQL, Bootstrap, Pytest, and TravisCI. *[[Our Technology Stack]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Technology%20Stack.md)*
 
 (j)
 
-We used Heroku as our production PaaS provider because it allows us to focus on development while conveniently configuring and managing infrastructure needs. It also hosts our web server and Postgres database as well as minimizes effort without compromising control of and visibility into what's going on. It uses integrated deployments with TravisCI and our GiHub repository for continuous integration and configuration management. *[[Our PaaS Platform]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/PaaS%20Platform.pdf)*
+We used Heroku as our production PaaS provider because it allows us to focus on development while conveniently configuring and managing infrastructure needs. It also minimizes effort without compromising control of and visibility into what's going on. It uses integrated deployments with TravisCI and our GitHub repository for continuous integration and monitoring. *[[Our PaaS Platform]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/PaaS%20Platform.pdf)*
 
 (k)
 
-We chose to use Pytest for unit testing as it ensures logic is working as expected and regressions do not creep in. For functional tests, we used Webtest in order to simulate real user interactions with the website, which allowed us to incorporate testing feedback reducing the burden on the test team. *[[Automated Test Results]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Automated%20Test%20Results.png)*
+We used Pytest for unit testing as it ensures logic is working as expected and regressions do not creep in. For functional tests, we used Webtest in order to simulate real user interactions with the website, which allowed us to incorporate testing feedback reducing the burden on the test team. *[[Automated Test Results]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Automated%20Test%20Results.png)*
 
 (l)
 
@@ -75,15 +75,15 @@ We chose TravisCI for continuous integration, which enabled us to run tests in i
 
 (m)
 
-Git allowed us to share and collaborate on code and assets, while Github hosts our git repository and has collaboration and sprint/issue tracking features built in for productivity and project management needs. *[[Our Public Repository]](https://github.com/CambriaSolutions/ADPQRFI-75001)*
+Git allowed us to share and collaborate on code and assets, while GitHub hosts our git repository and has collaboration and sprint/issue tracking features built in for productivity and project management needs. *[[Our Public Repository]](https://github.com/CambriaSolutions/ADPQRFI-75001)*
 
 (n)
 
-We used Librato from SoloarWinds for continuous monitoring because it is a complete solution that monitors and analyzes the metrics that impact the application at every level of the stack. It provides everything needed to visualize, analyze, and actively alert on critical metrics. We integrated Librato with Heroku to provide detailed information about the application’s performance, per-dyno system resources, and our application database. We added LogEntries to provide real-time logging, aggregated live-tail search and context views, and the ability to search events as they occur. *[[Continuous Monitoring]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Continuous%20Monitoring.pdf)* 
+We used Librato for continuous monitoring because it is a complete solution that monitors and analyzes the metrics that impact the application at every level of the stack. It provides everything needed to visualize, analyze, and actively alert on critical metrics. We integrated Librato with Heroku to provide detailed information about the application’s performance, per-dyno system resources, and our application database. We added LogEntries to provide real-time logging, aggregated live-tail search and context views, and the ability to search events as they occur. *[[Continuous Monitoring]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Continuous%20Monitoring.pdf)* 
 
 (o) 
 
-We utilized Heroku's "Dynos” for containerization.  Dynos containerization is a virtualization technology that allows multiple isolated operating system containers to be run on a shared host. The dyno manager keeps dynos running automatically. For this prototype, we are using a single Web Dyno. *[[Web Dyno Container]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Web%20Dyno%20Container.pdf)*  
+We utilized Heroku's "Dynos” for containerization.  Dynos containerization is a virtualization technology that allows multiple isolated operating system containers to be run on a shared host. The dyno manager keeps dynos running automatically. *[[Web Dyno Container]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Web%20Dyno%20Container.pdf)*  
 
 (p)
 
@@ -92,6 +92,6 @@ We utilized Heroku's "Dynos” for containerization.  Dynos containerization is 
 
 (q)
 
-In creating this prototype, we used exclusively open source technologies and the prototype itself is also openly licensed and free of charge. *[[Open Source Technologies]](/artifacts/Technology%20Stack.md)* *[[Prototype Open Source License]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/LICENSE)*
+We used exclusively open source technologies and the prototype itself is also openly licensed and free of charge. *[[Open Source Technologies]](/artifacts/Technology%20Stack.md)* *[[Prototype Open Source License]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/LICENSE)*
 
 
