@@ -41,7 +41,7 @@ In developing this prototype, we utilized several human-centered design techniqu
 
 (e)
 
-We developed our style guide keeping in mind its significant impact on the way users perceive and feel about their interactive experience and the brand itself. We prioritized the following objectives: the use of inspirational pictures, friendly and empathetic tone, persona-based branding, being intuitive and relevant, conversational nature, and presentation of the Cambria brand. *[[Style Guide]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Style%20Guide.pdf)* *[[Style Guide Process]](https://github.com/CambriaSolutions/ADPQRFI-75001/tree/master/artifacts/Human-Centered-Design-Artifacts/Style-Guide-Process/Style%20Guide%20%Process.pdf)*
+We developed our style guide keeping in mind its significant impact on the way users perceive and feel about their interactive experience and the brand itself. We prioritized the following objectives: the use of inspirational pictures, friendly and empathetic tone, persona-based branding, being intuitive and relevant, conversational nature, and presentation of the Cambria brand. *[[Style Guide]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Style%20Guide.pdf)* *[[Style Guide Process]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Human-Centered-Design-Artifacts/Style-Guide-Process/Style%20Guide%20Process.pdf)*
 
 (f)
 
@@ -49,7 +49,7 @@ Our Usability testing focused on understanding the users, their needs, and what 
 
 (g)
 
-We conducted six sprints, each sprint informing the subsequent. Each sprint cycle began with a sprint planning meeting and ended with a sprint review and sprint retrospective meetings. We ran two-day sprints and held daily scrums to review the last 24 hours, the next 24 hours, and any impediments that the team might have had. The team started slow but soon picked up velocity and finished most of the development early with the last couple of sprints planned for addressing prioritized enhancements and issues. *[[Our Agile Process]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Agile%20Process.pdf)* *[[Our Agile Techniques]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Agile%20Techniques.pdf)*
+We conducted six sprints, each sprint informing the subsequent. Each sprint cycle began with a sprint planning meeting and ended with a sprint review and sprint retrospective meetings. We ran two-day sprints and held daily scrums to review the last 24 hours, the next 24 hours, and any impediments that the team might have had. The team started slow but soon picked up velocity and finished most of the development early with the last couple of sprints planned for addressing prioritized enhancements and issues. *[[Our Agile Process]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Agile%20Process.pdf)* *[[Our Agile Techniques]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Agile%20Techniques.md)*
 
 (h)
 
