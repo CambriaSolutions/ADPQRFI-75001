@@ -1,6 +1,6 @@
 # ADPQRFI-75001
-[Click here for our working prototype](https://adpqrfi-75001.herokuapp.com)
-[Quick Start Guide](/artifacts/Quick%20Start%Guide.pdf)
+**[Click here for our working prototype](https://adpqrfi-75001.herokuapp.com)**
+**[Quick Start Guide](/artifacts/Quick%20Start%Guide.pdf)**
 
 [![Build Status](https://travis-ci.com/CambriaSolutions/ADPQRFI-75001.svg?token=i1JMA1supXo23nJUmgBo&branch=master)](https://travis-ci.com/CambriaSolutions/ADPQRFI-75001)
 
@@ -30,7 +30,7 @@ We followed the Digital Services Playbook and created a *[[document]](/artifacts
 
 # Requirements for the Prototype
 
-(a)
+**(a)**
 After we qualified the opportunity, our executive team met and assigned a leader, Dhiraj, to lead this initiative. Dhiraj was given the authority to lead the prototype development and to ensure that we deliver a quality product to OSI. Dhiraj is a certified Professional Scrum Master and he also served as the Agile Coach for the team. *[[Our Team]](/artifacts/The%20Team.pdf)*
 
 (b)
