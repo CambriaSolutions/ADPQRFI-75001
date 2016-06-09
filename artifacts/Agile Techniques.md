@@ -16,4 +16,6 @@ AGILE TECHNIQUES USED
 14. User interviews
 15. Product backlog
 16. Sprint backlog
-16. Agile testing 
+17. Agile testing
+18. Pair programming
+19. Time boxing
