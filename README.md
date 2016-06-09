@@ -85,7 +85,7 @@ Git allowed us to share and collaborate on code and assets, while Github hosts o
 
 (n)
 
-We used Librato from SoloarWinds for continuous monitoring because it is a complete solution that monitors and analyzes the metrics that impact the application at every level of the stack. It provides everything needed to visualize, analyze, and actively alert on critical metrics. We integrated Librato with Heroku to provide detailed information about the application’s performance, per-dyno system resources, and our application database. We added LogEntries to provide real-time logging, aggregated live-tail search and context views, and the ability to search events as they occur. *[[Web Dyno Container]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Continuous%20Monitoring.pdf)* 
+We used Librato from SoloarWinds for continuous monitoring because it is a complete solution that monitors and analyzes the metrics that impact the application at every level of the stack. It provides everything needed to visualize, analyze, and actively alert on critical metrics. We integrated Librato with Heroku to provide detailed information about the application’s performance, per-dyno system resources, and our application database. We added LogEntries to provide real-time logging, aggregated live-tail search and context views, and the ability to search events as they occur. *[[Continuous Monitoring]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Continuous%20Monitoring.pdf)* 
 
 (o) 
 
