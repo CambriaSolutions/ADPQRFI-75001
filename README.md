@@ -86,7 +86,8 @@ We utilized Heroku's "Dynos” for containerization, a virtualization technology
 (p)
 
 *[[Instructions to install the prototype on another machine]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/SETUP.md)*
-*[[Quick Start Guide]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Quick%20Start%Guide.pdf)*
+*[[Quick Start Guide]](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/Quick%20Start%20Guide.pdf)*
+                      
 
 (q)
 
