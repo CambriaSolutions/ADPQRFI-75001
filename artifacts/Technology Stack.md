@@ -3,9 +3,12 @@
 * [SQLite](https://www.sqlite.org/) - Development Database
 * [PostgreSQL](https://www.postgresql.org/) - Production Database
 * [Bootstrap](http://getbootstrap.com/) - Responsive frontend components
-* [Leaflet](http://leafletjs.com/) - JS Maps library
-* [Heroku]() - Production host
-* [TravisCI]() - Continuous integration
-* [Git]() - Version control
-* [Github]() - Git hosting and task/issue tracking
-* [SASS]() - CSS Preprocessor
+* [Google Maps JS API](https://developers.google.com/maps/documentation/javascript/) - JS Maps library
+* [Heroku](https://www.heroku.com/) - Production host
+* [TravisCI](https://travis-ci.com) - Continuous integration
+* [Git](https://git-scm.com/) - Version control
+* [Github](https://github.com/) - Git hosting and task/issue tracking
+* [SASS](http://sass-lang.com/) - CSS Preprocessor
+* [Flake8](https://flake8.readthedocs.io/en/latest/) - Code health
+* [Pytest](http://pytest.org/latest/) - Unit and functional testing framework
+* [Webtest](http://docs.pylonsproject.org/projects/webtest/en/latest/) - Frontend testing 
