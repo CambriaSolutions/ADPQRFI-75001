@@ -82,8 +82,7 @@ We chose TravisCI for continuous integration, which enabled us to run tests in i
 
 (m)
 
-Git allowed us to share and collaborate on code and assets, while Github hosts our git repository and has collaboration and sprint/issue tracking features built in for productivity and project management needs.
-<<<<>>>>>>>>>>>
+Git allowed us to share and collaborate on code and assets, while Github hosts our git repository and has collaboration and sprint/issue tracking features built in for productivity and project management needs. *[[Our Public Repository]](https://github.com/CambriaSolutions/ADPQRFI-75001)*
 
 (n)
 
