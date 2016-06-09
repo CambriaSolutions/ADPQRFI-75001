@@ -27,7 +27,7 @@ Over the last three weeks, our cross-functional team met face-to-face in confere
 To get to the goal of a working prototype in the time we were given, we started developing our first user story just as soon as our user group agreed on it. We learned a lot in the first sprint and never stopped learning, iterating, evolving, and adapting until we were done with our sixth sprint. We tested each core feature and made adjustments based on raised issues and feedback from our regular sprint retrospectives. From fixing bugs and issues to tweaking wireframes and visual design to adjusting the software stack, every aspect of each lifecycle was open to adjustments to ensure the prototype functioned and responded the way our users needed it to.   
 
 # U.S. Digital Services Playbook
-We followed the Digital Services Playbook and created a *[document](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/US%20Digital%20Serices%20Playbook%20Checklist.pdf)* describing our plays and our adherance to them.
+We followed the Digital Services Playbook and created a *[document](https://github.com/CambriaSolutions/ADPQRFI-75001/blob/master/artifacts/US%20Digital%20Serices%20Playbook%20Checklist.md)* describing our plays and our adherance to them.
 
 # Requirements for the Prototype
 
