@@ -15,7 +15,7 @@ Persona: Monica
 
 User Story #3
 -------------
-As a foster parent, I want to be able to communicate with my child’s case worker via private inbox, so that I can quickly escalate issues and/or collaboratively make informed decisions about the child(s) health and safety.
+As a foster parent, I want to be able to communicate with my child’s case worker via private inbox, so that I can quickly escalate issues and/or collaboratively make informed decisions about the child's/children's health and safety.
 
 Persona: Monica
 
